@@ -12,6 +12,30 @@
             android:theme="@style/Theme.DungeonMaster"
             tools:targetApi="31">
         <activity
+                android:name=".InventoryActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".UpgradeActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".CraftActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".BattleActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".RestZoneActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".CreatePlayerActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".RankingActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".SettingsActivity"
+                android:exported="false"/>
+        <activity
                 android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>
