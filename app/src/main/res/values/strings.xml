@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">DungeonMaster</string>
+    <string name="app_name" translatable="false">Dungeon Master</string>
+    <string name="level">Nivel</string>
+    <string name="upgrade">Mejorar</string>
+    <string name="name">Nombre</string>
+    <string name="job">Clase</string>
+    <string name="start">Empezar</string>
+    <string name="craft">Fabricar</string>
+    <string name="startGame">Empezar partida</string>
+    <string name="ranking">Ranking</string>
+    <string name="settings">Ajustes</string>
+    <string name="delRankings">Eliminar todos los registros</string>
+    <string name="diffTitle">Dificultad</string>
+    <string name="diffOp1">Activar modo facil</string>
+    <string name="langTitle">Idioma</string>
+    <string name="saveSettings">Guardar Ajustes</string>
+    <string name="langOp1">Elige un idioma:</string>
+    <string name="info">Informacion</string>
+    <string name="exit">Abandonar</string>
+    <string name="upgArmor">Mejorar Armadura</string>
+    <string name="craftItems">Fabricar objetos</string>
+    <string name="inv">Inventario</string>
+    <string name="repeatLvl">Repetir Nivel</string>
+    <string name="nextLvl">Siguiente Nivel</string>
 </resources>

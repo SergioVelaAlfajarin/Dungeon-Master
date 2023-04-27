@@ -8,8 +8,8 @@
         tools:context=".RankingActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:contentDescription="temp"
+        android:id="@+id/btnClearRank"
+        android:contentDescription="@string/delRankings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -17,11 +17,13 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:backgroundTint="#8E8E8E"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="379dp"
-        android:layout_height="705dp"
+        android:id="@+id/recyclerRankView"
+        android:layout_width="378dp"
+        android:layout_height="630dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
