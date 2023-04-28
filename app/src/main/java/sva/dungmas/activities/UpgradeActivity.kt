@@ -1,11 +1,12 @@
-package sva.dungmas
+package sva.dungmas.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import sva.dungmas.R
 
-class RestZoneActivity : AppCompatActivity() {
+class UpgradeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rest_zone)
+        setContentView(R.layout.activity_upgrade)
     }
 }

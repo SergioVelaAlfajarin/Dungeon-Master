@@ -22,4 +22,5 @@
     <string name="inv">Inventario</string>
     <string name="repeatLvl">Repetir Nivel</string>
     <string name="nextLvl">Siguiente Nivel</string>
+    <string name="playerName">Nombre del jugador</string>
 </resources>

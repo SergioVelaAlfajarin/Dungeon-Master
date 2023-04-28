@@ -1,7 +1,8 @@
-package sva.dungmas
+package sva.dungmas.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import sva.dungmas.R
 
 class CraftActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

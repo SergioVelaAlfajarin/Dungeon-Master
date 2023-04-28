@@ -22,4 +22,5 @@
     <string name="inv">Inventory</string>
     <string name="repeatLvl">Repeat Level</string>
     <string name="nextLvl">Next Level</string>
+    <string name="playerName">Player Name</string>
 </resources>
