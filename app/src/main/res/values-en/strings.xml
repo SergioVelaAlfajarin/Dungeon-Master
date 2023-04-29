@@ -23,4 +23,7 @@
     <string name="repeatLvl">Repeat Level</string>
     <string name="nextLvl">Next Level</string>
     <string name="playerName">Player Name</string>
+    <string name="cancelSettings">Exit without Saving</string>
+    <string name="darkTitle">Dark Mode</string>
+    <string name="darkOp1">Enable dark mode</string>
 </resources>

@@ -8,7 +8,7 @@
         tools:context=".activities.RankingActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnClearRank"
+        android:id="@+id/btnClearRanking"
         android:contentDescription="@string/delRankings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

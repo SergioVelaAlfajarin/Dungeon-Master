@@ -23,4 +23,7 @@
     <string name="repeatLvl">Repetir Nivel</string>
     <string name="nextLvl">Siguiente Nivel</string>
     <string name="playerName">Nombre del jugador</string>
+    <string name="cancelSettings">Salir sin guardar</string>
+    <string name="darkTitle">Modo Oscuro</string>
+    <string name="darkOp1">Activar modo oscuro</string>
 </resources>
