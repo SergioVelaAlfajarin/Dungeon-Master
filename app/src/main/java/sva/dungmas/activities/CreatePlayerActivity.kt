@@ -2,16 +2,15 @@ package sva.dungmas.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import sva.dungmas.R
 import sva.dungmas.dialogs.DialogCreator
+import sva.dungmas.game.DefaultJobs
 
 class CreatePlayerActivity : AppCompatActivity() {
     private lateinit var spinner: Spinner
@@ -29,11 +28,22 @@ class CreatePlayerActivity : AppCompatActivity() {
     }
 
     private fun fillSpinner(){
+        val jobs = DefaultJobs.values()
+        val jobsName = jobs.map { getJobName(it) }
+
         spinner.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
-            arrayOf("Item 1", "Item 2", "Item 3")
+            jobsName
         )
+    }
+
+    private fun getJobName(job: DefaultJobs): String{
+        return when(job){
+            DefaultJobs.KNIGHT -> getString(R.string.knightJobName)
+            DefaultJobs.ASSASSIN -> getString(R.string.assassinJobName)
+            DefaultJobs.TANK -> getString(R.string.tankJobName)
+        }
     }
 
     private fun setButtonsEvents(){
@@ -45,7 +55,7 @@ class CreatePlayerActivity : AppCompatActivity() {
         val spinnerText: String = spinner.selectedItem.toString()
         val etText: String = etName.text.toString()
 
-        if(etText == ""){
+        if(etText.isEmpty()){
             DialogCreator.createDialog("et vacio", this)
         }
 

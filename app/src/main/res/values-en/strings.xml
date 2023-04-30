@@ -26,4 +26,10 @@
     <string name="cancelSettings">Exit without Saving</string>
     <string name="darkTitle">Dark Mode</string>
     <string name="darkOp1">Enable dark mode</string>
+    <string name="tankJobName">Tank</string>
+    <string name="knightJobName">Knight</string>
+    <string name="assassinJobName">Assassin</string>
+    <string name="spa">Spanish</string>
+    <string name="eng">English</string>
+    <string name="settSavedMsg">Settings saved</string>
 </resources>
