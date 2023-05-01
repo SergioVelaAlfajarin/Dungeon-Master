@@ -1,7 +1,6 @@
 package sva.dungmas.dialogs
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -10,7 +9,7 @@ import sva.dungmas.R
 object DialogCreator {
     private val layout = R.layout.simple_message_dialog
 
-    fun createDialog(message: String, context: Context){
+    fun createSimpleDialog(message: String, context: Context){
         val preferences = context.getSharedPreferences("gamePrefs", Context.MODE_PRIVATE)
         val darkMode = preferences.getBoolean("darkMode", false)
         val builder = AlertDialog.Builder(context)

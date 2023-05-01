@@ -1,4 +1,4 @@
-package sva.dungmas.game
+package sva.dungmas.enums
 
 import sva.dungmas.R
 

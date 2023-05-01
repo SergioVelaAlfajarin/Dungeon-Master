@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import sva.dungmas.R
+import sva.dungmas.enums.Codes
 
 class RankingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +23,11 @@ class RankingActivity : AppCompatActivity() {
     }
 
     private fun btnClearRankingClick(v: View){
-        Toast.makeText(this, "borrados", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "borrados", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun finish() {
+        setResult(Codes.OK.code)
+        super.finish()
     }
 }

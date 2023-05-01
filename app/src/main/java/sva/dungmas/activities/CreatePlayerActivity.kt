@@ -1,5 +1,6 @@
 package sva.dungmas.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -7,10 +8,10 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
-import android.widget.Toast
 import sva.dungmas.R
 import sva.dungmas.dialogs.DialogCreator
-import sva.dungmas.game.DefaultJobs
+import sva.dungmas.enums.Codes
+import sva.dungmas.enums.DefaultJobs
 
 class CreatePlayerActivity : AppCompatActivity() {
     private lateinit var spinner: Spinner
@@ -56,13 +57,14 @@ class CreatePlayerActivity : AppCompatActivity() {
         val etText: String = etName.text.toString()
 
         if(etText.isEmpty()){
-            DialogCreator.createDialog("et vacio", this)
+            DialogCreator.createSimpleDialog("et vacio", this)
+            return
         }
 
-        Toast.makeText(
-            this,
-            "spinner: $spinnerText, et: $etText",
-            Toast.LENGTH_SHORT
-        ).show()
+        val it = Intent(this, RestZoneActivity::class.java)
+        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(it)
+        setResult(Codes.OK.code)
+        finish()
     }
 }
