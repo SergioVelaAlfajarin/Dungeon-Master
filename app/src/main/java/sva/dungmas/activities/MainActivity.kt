@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             Codes.OK.code -> Log.d(":::", "onActivityResult: FINISHED ACTIVITY OK")
             Codes.UPDATE_SETTINGS.code ->{
                 updateSettings()
-                recreate()
+                recreate() //TODO does not work (used to change lang)
             }
         }
     }
@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
+        //TODO only works at app restart
         val locale = Locale(Game.lang)
         Locale.setDefault(locale)
         val configuration = resources.configuration

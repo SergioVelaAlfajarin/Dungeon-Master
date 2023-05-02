@@ -8,7 +8,7 @@ import sva.dungmas.bbdd.BDManager
 object Game {
     lateinit var preferences: SharedPreferences
     lateinit var bdManager: BDManager
-
+    var level = 1
 
     fun init(appContext: Context){
         preferences = appContext.getSharedPreferences("gamePrefs", Context.MODE_PRIVATE)

@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import sva.dungmas.R
+import sva.dungmas.game.Game
 
-object DialogCreator {
-    private val layout = R.layout.simple_message_dialog
-
+object DialogCreator { //TODO dividir en clases
     fun createSimpleDialog(message: String, context: Context){
-        val preferences = context.getSharedPreferences("gamePrefs", Context.MODE_PRIVATE)
-        val darkMode = preferences.getBoolean("darkMode", false)
         val builder = AlertDialog.Builder(context)
-        val view = LayoutInflater.from(context).inflate(layout, null)
+        val view = LayoutInflater.from(context).inflate(R.layout.simple_message_dialog, null)
         val lbl = view.findViewById<TextView>(R.id.lblSimpleDialog)
         lbl.text = message
         builder.setView(view)
@@ -21,11 +18,34 @@ object DialogCreator {
             dialog.dismiss()
         }
         val dialog = builder.create()
-        if(darkMode) {
-            dialog.window?.setBackgroundDrawableResource(R.drawable.simple_dialog_bg)
+        if (Game.darkMode) {
+            dialog.window?.setBackgroundDrawableResource(R.drawable.simple_dialog_bg_dark)
             lbl.setTextColor(context.getColor(R.color.white))
         } else {
+            dialog.window?.setBackgroundDrawableResource(R.drawable.simple_dialog_bg)
+            lbl.setTextColor(context.getColor(R.color.black))
+        }
+        dialog.show()
+    }
+
+    fun createConfirmDialog(message: String, context: Context, callback: () -> Unit){
+        val builder = AlertDialog.Builder(context)
+        val view = LayoutInflater.from(context).inflate(R.layout.simple_message_dialog, null)
+        val lbl = view.findViewById<TextView>(R.id.lblSimpleDialog)
+        lbl.text = message
+        builder.setView(view)
+        builder.setPositiveButton("Ok") { dialog, _ ->
+            callback()
+        }
+        builder.setNegativeButton("No"){ dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        if (Game.darkMode) {
             dialog.window?.setBackgroundDrawableResource(R.drawable.simple_dialog_bg_dark)
+            lbl.setTextColor(context.getColor(R.color.white))
+        } else {
+            dialog.window?.setBackgroundDrawableResource(R.drawable.simple_dialog_bg)
             lbl.setTextColor(context.getColor(R.color.black))
         }
         dialog.show()
