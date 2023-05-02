@@ -33,4 +33,7 @@
     <string name="eng">Ingles</string>
     <string name="settSavedMsg">Ajustes Guardados</string>
     <string name="contextDel">Borrar</string>
+    <string name="vit">Vitalidad: %1$d</string>
+    <string name="atk">Ataque: %1$d</string>
+    <string name="def">Defensa: %1$d</string>
 </resources>

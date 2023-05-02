@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import sva.dungmas.bbdd.BDManager
+import sva.dungmas.game.entities.Player
 
 object Game {
+    lateinit var player: Player
     lateinit var preferences: SharedPreferences
     lateinit var bdManager: BDManager
     var level = 1
@@ -14,14 +16,6 @@ object Game {
         preferences = appContext.getSharedPreferences("gamePrefs", Context.MODE_PRIVATE)
         bdManager = BDManager()
     }
-
-    var player: Player? = null
-        get(){
-            return null
-        }
-        set(value){
-            field = value
-        }
 
     var easyMode: Boolean
         get(){
