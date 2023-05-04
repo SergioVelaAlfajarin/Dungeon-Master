@@ -1,5 +1,6 @@
 package sva.dungmas.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import sva.dungmas.R
+import sva.dungmas.bbdd.BDManager
 import sva.dungmas.dialogs.DialogCreator
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
@@ -19,11 +21,16 @@ import java.util.Locale
 class MainActivity : AppCompatActivity() {
     private lateinit var launcher: ActivityResultLauncher<Intent>
 
+    //TODO RECYCLER VIEWS
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Game.init(this)
+        Game.init(
+            applicationContext.getSharedPreferences("gamePrefs", Context.MODE_PRIVATE),
+            BDManager(applicationContext, "DungeonMaster")
+        )
         setButtonsEvents()
         updateSettings()
 
