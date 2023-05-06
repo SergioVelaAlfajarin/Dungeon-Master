@@ -34,6 +34,8 @@ class CreatePlayerActivity : AppCompatActivity() {
 
         fillSpinner()
         setButtonsEvents()
+
+        etName.setText("placeholder")
     }
 
     private fun fillSpinner(){

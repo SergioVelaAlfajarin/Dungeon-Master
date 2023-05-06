@@ -1,6 +1,8 @@
 package sva.dungmas.game.entities
 
 import sva.dungmas.enums.DefaultJobs
+import sva.dungmas.game.items.ItemPart
+import sva.dungmas.game.items.Storable
 
 class Player(
     val name: String,
@@ -23,6 +25,12 @@ class Player(
             return job.stats.def + armor.def
         }
 
+
+    fun addItemsToInventory(ip: ArrayList<Storable>){
+        ip.forEach {
+            inventory.add(it)
+        }
+    }
 
     override fun attack(other: Entity) {
         TODO("Not yet implemented")

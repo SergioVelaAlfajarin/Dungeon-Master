@@ -1,4 +1,10 @@
 package sva.dungmas.game.items
 
-class ItemPart {
+import sva.dungmas.R
+
+class ItemPart(
+    override val iconResId: Int,
+    override val name: String,
+) : Storable {
+
 }

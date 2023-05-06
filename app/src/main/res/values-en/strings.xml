@@ -36,4 +36,6 @@
     <string name="vit">Vitality: %1$d</string>
     <string name="atk">Attack: %1$d</string>
     <string name="def">Defense: %1$d</string>
+    <string name="quantity">Quantity: %1$d</string>
+    <string name="invTitle">Inventory of %1$s</string>
 </resources>

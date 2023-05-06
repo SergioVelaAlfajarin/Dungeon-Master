@@ -4,10 +4,14 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.core.content.edit
+import sva.dungmas.R
 import sva.dungmas.bbdd.BDManager
 import sva.dungmas.game.entities.Enemy
 import sva.dungmas.game.entities.Player
 import sva.dungmas.game.entities.Stats
+import sva.dungmas.game.items.Item
+import sva.dungmas.game.items.ItemPart
+import sva.dungmas.game.items.Storable
 
 object Game {
     lateinit var player: Player
@@ -41,6 +45,17 @@ object Game {
         for (i in 1..3){
             enemies.add(Enemy("Enemy"))
         }
+    }
+
+    fun getLevelDrop(): ArrayList<Storable> {
+        val items = arrayListOf<Storable>()
+
+        //TODO cambiar por items de la base de datos
+        items.add(ItemPart(R.drawable.iron, "11"))
+        items.add(ItemPart(R.drawable.iron, "12"))
+        items.add(ItemPart(R.drawable.iron, "13"))
+
+        return items
     }
 
     var easyMode: Boolean

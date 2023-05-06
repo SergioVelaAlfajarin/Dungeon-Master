@@ -1,21 +1,20 @@
 package sva.dungmas.activities
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import sva.dungmas.R
-import sva.dungmas.dialogs.DialogCreator
+import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
+import sva.dungmas.game.items.ItemPart
+import sva.dungmas.game.items.Storable
 
 class RestZoneActivity : AppCompatActivity() {
     private lateinit var lblLevel: TextView
@@ -47,7 +46,17 @@ class RestZoneActivity : AppCompatActivity() {
     }
 
     private fun onActivityResult(result: ActivityResult){
-
+        when(result.resultCode){
+            Codes.BATTLE_LOST.code ->{
+                //notificar perdido
+                finish()
+            }
+            Codes.BATTLE_WON.code -> {
+                val itemsDropped: ArrayList<Storable> = Game.getLevelDrop()
+                //TODO informar al usuario de los objetos dropeados
+                Game.player.addItemsToInventory(itemsDropped)
+            }
+        }
     }
 
     private fun setButtonsEvents(){
