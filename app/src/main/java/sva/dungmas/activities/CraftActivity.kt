@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -30,28 +31,29 @@ class CraftActivity : AppCompatActivity() {
     private lateinit var recyclerAdapter: CraftRecyclerAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var recipeRecyclerView: RecyclerView
+    private lateinit var btnCraft: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         //TODO activar fabricar objeto si check fabricable is enabled
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_craft)
 
+        btnCraft = findViewById(R.id.btnCraftItem)
         recyclerView = findViewById(R.id.recyclerCraftView)
         recipeRecyclerView = findViewById(R.id.recyclerRecipes)
-
         recyclerAdapter = CraftRecyclerAdapter(this)
-
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
         recipeRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 
     fun updateRecipeRecycler(){
         val item = recyclerAdapter.selectedItem
         recipeRecyclerView.adapter = RecipeRecyclerAdapter(item)
+    }
+
+    private fun updateCraftButton(craftable: Boolean) {
+        btnCraft.isEnabled = craftable
     }
 
     //-----------------------------
@@ -95,7 +97,10 @@ class CraftActivity : AppCompatActivity() {
                 itemView.setOnClickListener{
                     selectedPos = holder.adapterPosition
                     notifyDataSetChanged()
-                    (context as CraftActivity).updateRecipeRecycler()
+
+                    context as CraftActivity
+                    context.updateRecipeRecycler()
+                    context.updateCraftButton(isCraftable)
                 }
             }
         }
