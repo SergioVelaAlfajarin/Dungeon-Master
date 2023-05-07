@@ -3,6 +3,7 @@ package sva.dungmas.game.entities
 import sva.dungmas.game.Game
 
 class Enemy(
+    val id: Int,
     val name: String,
 ): Entity {
     override var alive = true

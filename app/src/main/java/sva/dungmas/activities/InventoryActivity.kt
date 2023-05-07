@@ -9,13 +9,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
 import sva.dungmas.R
 import sva.dungmas.game.Game
 import sva.dungmas.game.entities.Inventory
-import sva.dungmas.game.items.Storable
 import kotlin.streams.toList
 
 class InventoryActivity : AppCompatActivity() {
@@ -70,8 +67,8 @@ class InventoryActivity : AppCompatActivity() {
     }
 
     class InventoryViewHolder(v: View) : RecyclerView.ViewHolder(v){
-        val imgItem: ImageView = v.findViewById(R.id.imgItem)
-        val lblItemName: TextView = v.findViewById(R.id.lblItemName)
-        val lblItemQnty: TextView = v.findViewById(R.id.lblItemQnty)
+        val imgItem: ImageView = v.findViewById(R.id.imgItemInv)
+        val lblItemName: TextView = v.findViewById(R.id.lblItemNameInv)
+        val lblItemQnty: TextView = v.findViewById(R.id.lblItemQntyInv)
     }
 }

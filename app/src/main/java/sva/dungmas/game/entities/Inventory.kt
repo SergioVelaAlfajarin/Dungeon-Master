@@ -46,7 +46,12 @@ class Inventory {
     }
 
     operator fun get(it: Storable): Int {
-        return inventory[it] ?: -1
+        return inventory[it] ?: 0
+    }
+
+    fun checkIfItemIsCraftable(item: Item): Boolean {
+        //TODO("Not yet implemented")
+        return true
     }
 
 

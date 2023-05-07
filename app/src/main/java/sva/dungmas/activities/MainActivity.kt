@@ -21,15 +21,12 @@ import java.util.Locale
 class MainActivity : AppCompatActivity() {
     private lateinit var launcher: ActivityResultLauncher<Intent>
 
-    //TODO RECYCLER VIEWS
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         Game.init(
-            applicationContext.getSharedPreferences("gamePrefs", Context.MODE_PRIVATE),
-            BDManager(applicationContext, "DungeonMaster")
+            applicationContext.getSharedPreferences("gamePrefs", Context.MODE_PRIVATE)
         )
         setButtonsEvents()
         updateSettings()

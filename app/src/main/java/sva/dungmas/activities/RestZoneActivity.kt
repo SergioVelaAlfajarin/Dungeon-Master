@@ -52,9 +52,9 @@ class RestZoneActivity : AppCompatActivity() {
                 finish()
             }
             Codes.BATTLE_WON.code -> {
-                val itemsDropped: ArrayList<Storable> = Game.getLevelDrop()
+                val itemsDropped: HashMap<Storable, Int> = Game.getLevelDrop()
                 //TODO informar al usuario de los objetos dropeados
-                Game.player.addItemsToInventory(itemsDropped)
+                //Game.player.addItemsToInventory(itemsDropped)
             }
         }
     }

@@ -20,10 +20,10 @@ object Game {
     lateinit var defaultEnemyStats: Stats
     private lateinit var preferences: SharedPreferences
 
-    fun init(preferences: SharedPreferences, manager: BDManager){
+    fun init(preferences: SharedPreferences){
         this.preferences = preferences
         defaultEnemyStats = Stats(1,1,1)
-        bdManager = manager
+        bdManager = BDManager()
         genEnemies()
     }
 
@@ -43,19 +43,19 @@ object Game {
         Log.d(":::", "genEnemies: Generating lvl $level enemies.")
         enemies = arrayListOf()
         for (i in 1..3){
-            enemies.add(Enemy("Enemy"))
+            enemies.add(Enemy(i, "Enemy"))
         }
     }
 
-    fun getLevelDrop(): ArrayList<Storable> {
-        val items = arrayListOf<Storable>()
-
-        //TODO cambiar por items de la base de datos
-        items.add(ItemPart(R.drawable.iron, "11"))
-        items.add(ItemPart(R.drawable.iron, "12"))
-        items.add(ItemPart(R.drawable.iron, "13"))
-
-        return items
+    fun getLevelDrop(): HashMap<Storable, Int> { //always be itempart
+        val items: ArrayList<Storable> = bdManager.getDroppableItems()
+        val hashMap: HashMap<Storable, Int> = hashMapOf()
+        val qnty = (level * (if(easyMode) 1.5 else 3.0)).toInt()
+        items.forEach{
+            hashMap[it] = qnty
+        }
+        Log.d(":::", "getLevelDrop: $hashMap")
+        return hashMap
     }
 
     var easyMode: Boolean

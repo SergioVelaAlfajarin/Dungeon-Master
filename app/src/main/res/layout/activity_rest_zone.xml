@@ -8,8 +8,9 @@
 
     <Button
         android:id="@+id/btnLevelInfo"
+
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:text="@string/info"
@@ -18,8 +19,9 @@
 
     <Button
         android:id="@+id/btnLeaveGame"
+
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:text="@string/exit"
@@ -28,29 +30,32 @@
 
     <Button
         android:id="@+id/btnUpgrade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/upgArmor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnCraft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/craftItems"
-        app:layout_constraintBottom_toTopOf="@+id/btnUpgrade"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnInventory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/inv"
         app:layout_constraintBottom_toTopOf="@+id/btnCraft"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,38 +63,42 @@
 
     <TextView
         android:id="@+id/lblGameLevel"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="236dp"
         android:fontFamily="serif"
         android:text="@string/level"
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnRepeatLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="@string/repeatLvl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblGameLevel" />
-
-    <Button
         android:id="@+id/btnNextLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
         android:text="@string/nextLvl"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRepeatLevel" />
+
+    <Button
+        android:id="@+id/btnRepeatLevel"
+
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/repeatLvl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblGameLevel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

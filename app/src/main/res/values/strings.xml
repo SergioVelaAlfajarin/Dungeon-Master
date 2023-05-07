@@ -38,4 +38,6 @@
     <string name="def">Defensa: %1$d</string>
     <string name="quantity">Cantidad: %1$d</string>
     <string name="invTitle">Inventario de %1$s</string>
+    <string name="craftable">Fabricable</string>
+    <string name="needed">Necesitas:</string>
 </resources>
