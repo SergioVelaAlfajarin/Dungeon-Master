@@ -11,14 +11,15 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import sva.dungmas.R
+import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
-import sva.dungmas.game.items.ItemPart
 import sva.dungmas.game.items.Storable
 
 class RestZoneActivity : AppCompatActivity() {
     private lateinit var lblLevel: TextView
     private lateinit var launcher: ActivityResultLauncher<Intent>
+    private lateinit var btnRepeatLevel: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,8 @@ class RestZoneActivity : AppCompatActivity() {
             this::onActivityResult
         )
 
+
+
         //TODO handle back pressed
         /*onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -48,13 +51,16 @@ class RestZoneActivity : AppCompatActivity() {
     private fun onActivityResult(result: ActivityResult){
         when(result.resultCode){
             Codes.BATTLE_LOST.code ->{
-                //notificar perdido
+                SimpleDialog("info", "has perdido")
+                    .show(supportFragmentManager, "info")
                 finish()
             }
             Codes.BATTLE_WON.code -> {
+                btnRepeatLevel.isEnabled = true
                 val itemsDropped: HashMap<Storable, Int> = Game.getLevelDrop()
                 //TODO informar al usuario de los objetos dropeados
                 //Game.player.addItemsToInventory(itemsDropped)
+                updateLblLevel()
             }
         }
     }
@@ -74,6 +80,10 @@ class RestZoneActivity : AppCompatActivity() {
             .setOnClickListener(this::btnRepeatLevelClick)
         (findViewById<Button>(R.id.btnNextLevel))
             .setOnClickListener(this::btnNextLevelClick)
+
+
+        btnRepeatLevel = findViewById<Button>(R.id.btnRepeatLevel)
+        btnRepeatLevel.isEnabled = false
     }
 
     private fun btnLevelInfoClick(v: View){

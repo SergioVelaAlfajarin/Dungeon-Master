@@ -32,6 +32,9 @@ class CraftActivity : AppCompatActivity() {
     private lateinit var recipeRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //TODO activar fabricar objeto si check fabricable is enabled
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_craft)
 

@@ -30,7 +30,7 @@ class RankingActivity : AppCompatActivity() {
             6  to "-",
             7  to "-",
             8  to "-",
-            9 to "-",
+            9  to "-",
         )
 
         recyclerAdapter = RankingRecyclerAdapter(list)

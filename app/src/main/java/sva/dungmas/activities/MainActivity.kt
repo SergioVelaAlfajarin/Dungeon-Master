@@ -13,7 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import sva.dungmas.R
 import sva.dungmas.bbdd.BDManager
-import sva.dungmas.dialogs.DialogCreator
+import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
 import java.util.Locale
@@ -39,7 +39,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun onActivityResult(result: ActivityResult){
         when(result.resultCode){
-            Codes.ERR.code -> DialogCreator.createSimpleDialog("Error", this)
+            Codes.ERR.code ->{
+                SimpleDialog("info", "error")
+                    .show(supportFragmentManager, "info")
+            }
             Codes.OK.code -> Log.d(":::", "onActivityResult: FINISHED ACTIVITY OK")
             Codes.UPDATE_SETTINGS.code ->{
                 updateSettings()

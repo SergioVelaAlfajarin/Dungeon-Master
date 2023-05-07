@@ -13,7 +13,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.view.get
 import sva.dungmas.R
-import sva.dungmas.dialogs.DialogCreator
+import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
 import sva.dungmas.enums.DefaultJobs
 import sva.dungmas.game.Game
@@ -93,7 +93,8 @@ class CreatePlayerActivity : AppCompatActivity() {
         val name = etName.text.toString()
 
         if(name.isEmpty()){
-            DialogCreator.createSimpleDialog("et vacio", this)
+            SimpleDialog("info", "et vacio")
+                .show(supportFragmentManager, "info")
             return
         }
 
