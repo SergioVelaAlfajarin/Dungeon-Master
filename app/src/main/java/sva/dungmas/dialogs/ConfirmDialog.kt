@@ -11,8 +11,8 @@ import sva.dungmas.game.Game
 class ConfirmDialog(
     private val title: String,
     private val message: String,
-    private val op1: String,
-    private val op2: String
+    private val negativeOp: String,
+    private val positiveOp: String
 ): DialogFragment()  {
     var accepted = false
 
@@ -26,10 +26,10 @@ class ConfirmDialog(
 
         builder.setTitle(title)
         builder.setMessage(message)
-        builder.setNegativeButton(op1){ dialogInterface: DialogInterface?, i: Int ->
+        builder.setNegativeButton(negativeOp){ dialogInterface: DialogInterface?, i: Int ->
             dismiss()
         }
-        builder.setPositiveButton(op2){ dialogInterface: DialogInterface?, i: Int ->
+        builder.setPositiveButton(positiveOp){ dialogInterface: DialogInterface?, i: Int ->
             accepted = true
             dismiss()
         }

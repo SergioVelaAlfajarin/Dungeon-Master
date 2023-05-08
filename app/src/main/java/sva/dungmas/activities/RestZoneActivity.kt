@@ -26,16 +26,13 @@ class RestZoneActivity : AppCompatActivity() {
         setContentView(R.layout.activity_rest_zone)
 
         lblLevel = findViewById(R.id.lblGameLevel)
-        updateLblLevel()
-
-        setButtonsEvents()
-
         launcher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),
             this::onActivityResult
         )
 
-
+        updateLblLevel()
+        setButtonsEvents()
 
         //TODO handle back pressed
         /*onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -58,7 +55,7 @@ class RestZoneActivity : AppCompatActivity() {
             Codes.BATTLE_WON.code -> {
                 btnRepeatLevel.isEnabled = true
                 val itemsDropped: HashMap<Storable, Int> = Game.getLevelDrop()
-                //TODO informar al usuario de los objetos dropeados
+                //TODO informar al usuario de los objetos dropeados (custom dialog?)
                 //Game.player.addItemsToInventory(itemsDropped)
                 updateLblLevel()
             }
@@ -81,17 +78,18 @@ class RestZoneActivity : AppCompatActivity() {
         (findViewById<Button>(R.id.btnNextLevel))
             .setOnClickListener(this::btnNextLevelClick)
 
-
         btnRepeatLevel = findViewById<Button>(R.id.btnRepeatLevel)
         btnRepeatLevel.isEnabled = false
     }
 
     private fun btnLevelInfoClick(v: View){
-        Toast.makeText(this, "Recycler con drop data", Toast.LENGTH_SHORT).show()
+        CustomDialog("Level drops")
+            .show(supportFragmentManager, ":::")
     }
 
     private fun btnLeaveGameClick(v: View){
-        Toast.makeText(this, "dialog preguntando seguro quieres salir?", Toast.LENGTH_SHORT).show()
+        ConfirmDialog("Confirmacion", "Quieres salir?", "Cancelar", "Salir")
+            .show(supportFragmentManager, ":::")
     }
 
     private fun btnUpgradeClick(v: View){
