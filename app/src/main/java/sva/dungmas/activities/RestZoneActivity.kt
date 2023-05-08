@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import sva.dungmas.R
+import sva.dungmas.dialogs.ConfirmCallback
 import sva.dungmas.dialogs.ConfirmDialog
 import sva.dungmas.dialogs.CustomDialog
 import sva.dungmas.dialogs.SimpleDialog
@@ -36,15 +37,11 @@ class RestZoneActivity : AppCompatActivity() {
         updateLblLevel()
         setButtonsEvents()
 
-        //TODO handle back pressed
-        /*onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+        onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                Log.d(":::", "handleOnBackPressed: ")
-                DialogCreator.createConfirmDialog("Salir?", applicationContext) {
-                    finish()
-                }
+                confirmExit()
             }
-        })*/
+        })
     }
 
     private fun onActivityResult(result: ActivityResult){
@@ -85,14 +82,27 @@ class RestZoneActivity : AppCompatActivity() {
     }
 
     private fun btnLevelInfoClick(v: View){
+        //TODO hacer que se muestren los items que se van a dropear
+        //hacer layout fija, ninguna recycler
         CustomDialog("Level drops")
             .show(supportFragmentManager, ":::")
     }
 
     private fun btnLeaveGameClick(v: View){
-        ConfirmDialog("Confirmacion", "Quieres salir?", "Cancelar", "Salir")
-            .show(supportFragmentManager, ":::")
+        confirmExit()
     }
+
+    private fun confirmExit() = ConfirmDialog(
+        getString(R.string.exitGameTitle),
+        getString(R.string.exitGameMsg),
+        getString(R.string.cancelOp),
+        getString(R.string.exitOp),
+        object : ConfirmCallback {
+            override fun dialogOk() {
+                finish()
+            }
+        }
+    ).show(supportFragmentManager, ":::")
 
     private fun btnUpgradeClick(v: View){
         val it = Intent(this, UpgradeActivity::class.java)

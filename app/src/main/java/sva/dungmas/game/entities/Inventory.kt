@@ -12,7 +12,23 @@ class Inventory {
 
     init{
         inventory = linkedMapOf(
-
+            Item(R.drawable.iron, "Iron") to 3,
+            Item(R.drawable.rock, "Rock") to 3,
+            Item(R.drawable.leaves, "Leaves") to 3,
+            Item(R.drawable.wood, "Wood") to 3,
+            Item(R.drawable.iron, "Iron") to 3,
+            Item(R.drawable.rock, "Rock") to 3,
+            Item(R.drawable.leaves, "Leaves") to 3,
+            Item(R.drawable.wood, "Wood") to 3,
+            Item(R.drawable.iron, "Iron") to 3,
+            Item(R.drawable.rock, "Rock") to 3,
+            Item(R.drawable.leaves, "Leaves") to 3,
+            Item(R.drawable.wood, "Wood") to 3,
+            Item(R.drawable.wood, "Wood") to 3,
+            Item(R.drawable.iron, "Iron") to 3,
+            Item(R.drawable.rock, "Rock") to 3,
+            Item(R.drawable.leaves, "Leaves") to 3,
+            Item(R.drawable.wood, "Wood") to 3,
         )
     }
 

@@ -41,4 +41,8 @@
     <string name="craftable">Fabricable</string>
     <string name="needed">Necesitas:</string>
     <string name="emptyInv">El inventario esta vacio</string>
+    <string name="exitGameTitle">Salir del juego</string>
+    <string name="exitGameMsg">Quieres abandonar la partida actual y perder todo el progreso?</string>
+    <string name="cancelOp">Cancelar</string>
+    <string name="exitOp">Salir</string>
 </resources>

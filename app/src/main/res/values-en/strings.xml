@@ -41,4 +41,8 @@
     <string name="craftable">Craftable</string>
     <string name="needed">Needed:</string>
     <string name="emptyInv">The inventory is empty</string>
+    <string name="exitGameTitle">Exit Game</string>
+    <string name="exitGameMsg">Do you want to leave the current run and lose all the progress?</string>
+    <string name="cancelOp">Cancel</string>
+    <string name="exitOp">Exit</string>
 </resources>
