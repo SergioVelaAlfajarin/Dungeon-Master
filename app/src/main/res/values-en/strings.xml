@@ -40,4 +40,5 @@
     <string name="invTitle">Inventory of %1$s</string>
     <string name="craftable">Craftable</string>
     <string name="needed">Needed:</string>
+    <string name="emptyInv">The inventory is empty</string>
 </resources>

@@ -11,6 +11,8 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import sva.dungmas.R
+import sva.dungmas.dialogs.ConfirmDialog
+import sva.dungmas.dialogs.CustomDialog
 import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game

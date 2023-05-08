@@ -12,26 +12,14 @@ class Inventory {
 
     init{
         inventory = linkedMapOf(
-            Item(R.drawable.iron, "Iron") to 3,
-            Item(R.drawable.rock, "Rock") to 3,
-            Item(R.drawable.leaves, "Leaves") to 3,
-            Item(R.drawable.wood, "Wood") to 3,
-            Item(R.drawable.iron, "Iron") to 3,
-            Item(R.drawable.rock, "Rock") to 3,
-            Item(R.drawable.leaves, "Leaves") to 3,
-            Item(R.drawable.wood, "Wood") to 3,
-            Item(R.drawable.iron, "Iron") to 3,
-            Item(R.drawable.rock, "Rock") to 3,
-            Item(R.drawable.leaves, "Leaves") to 3,
-            Item(R.drawable.wood, "Wood") to 3,
-            Item(R.drawable.wood, "Wood") to 3,
-            Item(R.drawable.iron, "Iron") to 3,
-            Item(R.drawable.rock, "Rock") to 3,
-            Item(R.drawable.leaves, "Leaves") to 3,
-            Item(R.drawable.wood, "Wood") to 3,
+
         )
     }
 
+    val isEmpty: Boolean
+        get(){
+            return inventory.size == 0
+        }
     val size: Int
         get(){
             return inventory.size
