@@ -3,7 +3,9 @@ package sva.dungmas.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -17,6 +19,7 @@ import sva.dungmas.dialogs.CustomDialog
 import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
+import sva.dungmas.game.items.ItemPart
 import sva.dungmas.game.items.Storable
 
 class RestZoneActivity : AppCompatActivity() {
@@ -53,7 +56,7 @@ class RestZoneActivity : AppCompatActivity() {
             }
             Codes.BATTLE_WON.code -> {
                 btnRepeatLevel.isEnabled = true
-                val itemsDropped: HashMap<Storable, Int> = Game.getLevelDrop()
+                val itemsDropped: HashMap<ItemPart, Int> = Game.getLevelDrop()
                 //TODO informar al usuario de los objetos dropeados (custom dialog?)
                 //Game.player.addItemsToInventory(itemsDropped)
                 updateLblLevel()
@@ -83,8 +86,12 @@ class RestZoneActivity : AppCompatActivity() {
 
     private fun btnLevelInfoClick(v: View){
         //TODO hacer que se muestren los items que se van a dropear
-        //hacer layout fija, ninguna recycler
-        CustomDialog("Level drops")
+        val view = layoutInflater.inflate(R.layout.item_preview_dialog, null)
+
+
+
+
+        CustomDialog("Level drops", view)
             .show(supportFragmentManager, ":::")
     }
 

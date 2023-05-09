@@ -45,4 +45,8 @@
     <string name="exitGameMsg">Do you want to leave the current run and lose all the progress?</string>
     <string name="cancelOp">Cancel</string>
     <string name="exitOp">Exit</string>
+    <string name="itemName_wood">Wood</string>
+    <string name="itemName_iron">Iron</string>
+    <string name="itemName_leaves">Leaves</string>
+    <string name="itemName_rock">Rock</string>
 </resources>

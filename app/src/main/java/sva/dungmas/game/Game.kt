@@ -47,9 +47,9 @@ object Game {
         }
     }
 
-    fun getLevelDrop(): HashMap<Storable, Int> { //always be itempart
-        val items: ArrayList<Storable> = bdManager.getDroppableItems()
-        val hashMap: HashMap<Storable, Int> = hashMapOf()
+    fun getLevelDrop(): HashMap<ItemPart, Int> {
+        val items: List<ItemPart> = bdManager.getItemsPart()
+        val hashMap: HashMap<ItemPart, Int> = hashMapOf()
         val qnty = (level * (if(easyMode) 1.5 else 3.0)).toInt()
         items.forEach{
             hashMap[it] = qnty

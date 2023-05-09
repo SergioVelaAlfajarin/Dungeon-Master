@@ -45,4 +45,8 @@
     <string name="exitGameMsg">Quieres abandonar la partida actual y perder todo el progreso?</string>
     <string name="cancelOp">Cancelar</string>
     <string name="exitOp">Salir</string>
+    <string name="itemName_wood">Madera</string>
+    <string name="itemName_iron">Hierro</string>
+    <string name="itemName_leaves">Hojas</string>
+    <string name="itemName_rock">Roca</string>
 </resources>

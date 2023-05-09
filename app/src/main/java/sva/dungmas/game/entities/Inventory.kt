@@ -8,26 +8,7 @@ import kotlin.streams.toList
 
 
 class Inventory {
-    private val inventory: LinkedHashMap<Storable, Int> 
-        = linkedMapOf(
-            Item(R.drawable.iron, "Iron") to 3,
-            Item(R.drawable.rock, "Rock") to 3,
-            Item(R.drawable.leaves, "Leaves") to 3,
-            Item(R.drawable.wood, "Wood") to 3,
-            Item(R.drawable.iron, "Iron") to 3,
-            Item(R.drawable.rock, "Rock") to 3,
-            Item(R.drawable.leaves, "Leaves") to 3,
-            Item(R.drawable.wood, "Wood") to 3,
-            Item(R.drawable.iron, "Iron") to 3,
-            Item(R.drawable.rock, "Rock") to 3,
-            Item(R.drawable.leaves, "Leaves") to 3,
-            Item(R.drawable.wood, "Wood") to 3,
-            Item(R.drawable.wood, "Wood") to 3,
-            Item(R.drawable.iron, "Iron") to 3,
-            Item(R.drawable.rock, "Rock") to 3,
-            Item(R.drawable.leaves, "Leaves") to 3,
-            Item(R.drawable.wood, "Wood") to 3,
-        )
+    private val inventory: LinkedHashMap<Storable, Int> = linkedMapOf()
 
     val isEmpty: Boolean
         get(){
@@ -39,7 +20,7 @@ class Inventory {
         }
     val keySet: MutableSet<Storable>
         get(){
-            return inventory.keys //TODO no devolver las keys talcual
+            return inventory.keys
         }
 
     fun add(it: Storable) {
@@ -52,7 +33,7 @@ class Inventory {
 
     fun checkIfItemIsCraftable(item: Item): Boolean {
         //TODO tests
-        val isCraftable = true
+        var isCraftable = true
         item.recipe.forEach { (key, value) -> 
             val qntyInInv = inventory[key] ?: 0
             if(qntyInInv < value){
