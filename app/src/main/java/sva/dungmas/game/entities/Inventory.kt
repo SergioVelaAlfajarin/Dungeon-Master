@@ -8,10 +8,8 @@ import kotlin.streams.toList
 
 
 class Inventory {
-    private val inventory: LinkedHashMap<Storable, Int>
-
-    init{
-        inventory = linkedMapOf(
+    private val inventory: LinkedHashMap<Storable, Int> 
+        = linkedMapOf(
             Item(R.drawable.iron, "Iron") to 3,
             Item(R.drawable.rock, "Rock") to 3,
             Item(R.drawable.leaves, "Leaves") to 3,
@@ -30,7 +28,6 @@ class Inventory {
             Item(R.drawable.leaves, "Leaves") to 3,
             Item(R.drawable.wood, "Wood") to 3,
         )
-    }
 
     val isEmpty: Boolean
         get(){
@@ -42,7 +39,7 @@ class Inventory {
         }
     val keySet: MutableSet<Storable>
         get(){
-            return inventory.keys
+            return inventory.keys //TODO no devolver las keys talcual
         }
 
     fun add(it: Storable) {
@@ -54,8 +51,15 @@ class Inventory {
     }
 
     fun checkIfItemIsCraftable(item: Item): Boolean {
-        //TODO("Not yet implemented")
-        return true
+        //TODO tests
+        val isCraftable = true
+        item.recipe.forEach { (key, value) -> 
+            val qntyInInv = inventory[key] ?: 0
+            if(qntyInInv < value){
+                isCraftable = false
+            }
+        }
+        return isCraftable
     }
 
 

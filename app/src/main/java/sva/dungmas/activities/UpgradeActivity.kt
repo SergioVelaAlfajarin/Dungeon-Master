@@ -16,5 +16,6 @@ class UpgradeActivity : AppCompatActivity() {
         playerArmor = Game.player.armor
         (findViewById<TextView>(R.id.lblArmorLvl))
             .text = getString(R.string.level, playerArmor.level)
+        //TODO image view del icono de la armadura
     }
 }

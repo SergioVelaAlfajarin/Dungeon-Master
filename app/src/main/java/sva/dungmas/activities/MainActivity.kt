@@ -46,7 +46,10 @@ class MainActivity : AppCompatActivity() {
             Codes.OK.code -> Log.d(":::", "onActivityResult: FINISHED ACTIVITY OK")
             Codes.UPDATE_SETTINGS.code ->{
                 updateSettings()
-                recreate() //TODO does not work (used to change lang)
+                //recreate() //TODO does not work (used to change lang)
+
+                finish()
+                startActivity(intent) //TODO CHECK IF THIS WORKS
             }
         }
     }
