@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import sva.dungmas.R
+import sva.dungmas.dialogs.ConfirmCallback
+import sva.dungmas.dialogs.ConfirmDialog
 import sva.dungmas.enums.Codes
 
 class RankingActivity : AppCompatActivity() {
@@ -47,13 +49,19 @@ class RankingActivity : AppCompatActivity() {
             .setOnClickListener(this::btnClearRankingClick)
     }
 
-    private fun btnClearRankingClick(v: View){
-        //TODO preguntar confirmacion (hacer dialogs)
-        //TODO delete also on database
-        recyclerAdapter.resetList()
-
-       //Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
-    }
+    private fun btnClearRankingClick(v: View) =
+        ConfirmDialog(
+            getString(R.string.clearRankingTitle),
+            getString(R.string.clearRankingMsg),
+            getString(R.string.cancelOp),
+            getString(R.string.acceptOp),
+            object : ConfirmCallback {
+                override fun dialogOk() {
+                    //TODO delete also on database
+                    recyclerAdapter.resetList()
+                }
+            }
+        )
 
     override fun finish() {
         setResult(Codes.OK.code)

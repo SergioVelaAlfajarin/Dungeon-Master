@@ -17,7 +17,7 @@ import sva.dungmas.game.Game
 import sva.dungmas.game.entities.Inventory
 import kotlin.streams.toList
 
-class InventoryActivity : AppCompatActivity() {
+class InventoryActivity : AppCompatActivity() { //TODO TEST
     private lateinit var playerInv: Inventory
     private lateinit var recyclerAdapter: InventoryRecyclerAdapter
     private lateinit var recyclerView: RecyclerView

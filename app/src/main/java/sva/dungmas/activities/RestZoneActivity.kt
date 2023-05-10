@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import sva.dungmas.R
 import sva.dungmas.dialogs.ConfirmCallback
 import sva.dungmas.dialogs.ConfirmDialog
@@ -20,7 +23,6 @@ import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
 import sva.dungmas.game.items.ItemPart
-import sva.dungmas.game.items.Storable
 
 class RestZoneActivity : AppCompatActivity() {
     private lateinit var lblLevel: TextView
@@ -86,9 +88,31 @@ class RestZoneActivity : AppCompatActivity() {
 
     private fun btnLevelInfoClick(v: View){
         //TODO hacer que se muestren los items que se van a dropear
-        val view = layoutInflater.inflate(R.layout.item_preview_dialog, null)
+        val view = layoutInflater.inflate(R.layout.preview_dialog, null)
+        val recycler = view.findViewById<RecyclerView>(R.id.recyclerItemPreview)
 
+        recycler.layoutManager = LinearLayoutManager(this)
 
+        class ViewHolder(v: View): RecyclerView.ViewHolder(v){
+            val imgItemIconDialog: ImageView = v.findViewById(R.id.imgItemIconDialog)
+            val lblItemNameDialog: TextView = v.findViewById(R.id.lblItemNameDialog)
+            val lblItemQntyDialog: TextView = v.findViewById(R.id.lblItemQntyDialog)
+        }
+
+        recycler.adapter = object : RecyclerView.Adapter<ViewHolder>(){
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+                val vInflated = LayoutInflater.from(parent.context).inflate(R.layout.preview_dialog_item, parent, false)
+                return ViewHolder(vInflated)
+            }
+
+            override fun getItemCount(): Int {
+                return Game.getLevelDrop().size
+            }
+
+            override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+                //holder.imgItemIconDialog.setImageResource()
+            }
+        }
 
 
         CustomDialog("Level drops", view)

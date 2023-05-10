@@ -1,8 +1,17 @@
 package sva.dungmas.game.entities
 
 class Armor {
+    fun increaseLevel() {
+        stats.vit += 2
+        stats.atk += 2
+        stats.def += 2
+
+        level++
+    }
+
     private val stats = Stats(1,1,1)
     var level = 1
+        private set
 
     val icon: Int
         get(){ //TODO iconos amardura

@@ -49,4 +49,7 @@
     <string name="itemName_iron">Iron</string>
     <string name="itemName_leaves">Leaves</string>
     <string name="itemName_rock">Rock</string>
+    <string name="clearRankingTitle">Clear Ranking</string>
+    <string name="clearRankingMsg">Do you want to delete all entries?</string>
+    <string name="acceptOp">Accept</string>
 </resources>

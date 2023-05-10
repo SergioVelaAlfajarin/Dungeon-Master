@@ -49,4 +49,7 @@
     <string name="itemName_iron">Hierro</string>
     <string name="itemName_leaves">Hojas</string>
     <string name="itemName_rock">Roca</string>
+    <string name="clearRankingTitle">Borrar Ranking</string>
+    <string name="clearRankingMsg">¿Quieres borrar todas las puntuaciones?</string>
+    <string name="acceptOp">Aceptar</string>
 </resources>
