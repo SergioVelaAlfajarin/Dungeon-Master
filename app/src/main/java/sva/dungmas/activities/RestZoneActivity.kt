@@ -1,5 +1,6 @@
 package sva.dungmas.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -58,7 +59,7 @@ class RestZoneActivity : AppCompatActivity() {
             }
             Codes.BATTLE_WON.code -> {
                 btnRepeatLevel.isEnabled = true
-                val itemsDropped: HashMap<ItemPart, Int> = Game.getLevelDrop()
+                val itemsDropped: LinkedHashMap<ItemPart, Int> = Game.getLevelDrop()
                 //TODO informar al usuario de los objetos dropeados (custom dialog?)
                 //Game.player.addItemsToInventory(itemsDropped)
                 updateLblLevel()
@@ -87,36 +88,40 @@ class RestZoneActivity : AppCompatActivity() {
     }
 
     private fun btnLevelInfoClick(v: View){
-        //TODO hacer que se muestren los items que se van a dropear
         val view = layoutInflater.inflate(R.layout.preview_dialog, null)
+
         val recycler = view.findViewById<RecyclerView>(R.id.recyclerItemPreview)
-
         recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = PreviewRecyclerAdapter()
 
-        class ViewHolder(v: View): RecyclerView.ViewHolder(v){
-            val imgItemIconDialog: ImageView = v.findViewById(R.id.imgItemIconDialog)
-            val lblItemNameDialog: TextView = v.findViewById(R.id.lblItemNameDialog)
-            val lblItemQntyDialog: TextView = v.findViewById(R.id.lblItemQntyDialog)
-        }
-
-        recycler.adapter = object : RecyclerView.Adapter<ViewHolder>(){
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-                val vInflated = LayoutInflater.from(parent.context).inflate(R.layout.preview_dialog_item, parent, false)
-                return ViewHolder(vInflated)
-            }
-
-            override fun getItemCount(): Int {
-                return Game.getLevelDrop().size
-            }
-
-            override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-                //holder.imgItemIconDialog.setImageResource()
-            }
-        }
-
-
-        CustomDialog("Level drops", view)
+        CustomDialog(getString(R.string.itemPreviewDialogTitle, Game.level + 1), view)
             .show(supportFragmentManager, ":::")
+    }
+
+    class PreviewRecyclerAdapter(): RecyclerView.Adapter<PreviewViewHolder>(){
+        private val drops = Game.getLevelDrop()
+        private val keyset = Game.getLevelDrop().keys.toList()
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PreviewViewHolder {
+            val vInflated = LayoutInflater.from(parent.context).inflate(R.layout.preview_dialog_item, parent, false)
+            return PreviewViewHolder(vInflated)
+        }
+
+        override fun getItemCount(): Int {
+            return drops.size
+        }
+
+        override fun onBindViewHolder(holder: PreviewViewHolder, position: Int) {
+            holder.imgItemIconDialog.setImageResource(keyset[position].iconResId)
+            holder.lblItemNameDialog.text = keyset[position].name
+            holder.lblItemQntyDialog.text = "x${drops[keyset[position]]}"
+        }
+    }
+
+    class PreviewViewHolder(v: View): RecyclerView.ViewHolder(v){
+        val imgItemIconDialog: ImageView = v.findViewById(R.id.imgItemIconDialog)
+        val lblItemNameDialog: TextView = v.findViewById(R.id.lblItemNameDialog)
+        val lblItemQntyDialog: TextView = v.findViewById(R.id.lblItemQntyDialog)
     }
 
     private fun btnLeaveGameClick(v: View){
@@ -131,6 +136,7 @@ class RestZoneActivity : AppCompatActivity() {
         object : ConfirmCallback {
             override fun dialogOk() {
                 finish()
+                Game.reset()
             }
         }
     ).show(supportFragmentManager, ":::")

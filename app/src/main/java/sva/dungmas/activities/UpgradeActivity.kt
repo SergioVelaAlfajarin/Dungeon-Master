@@ -36,7 +36,7 @@ class UpgradeActivity : AppCompatActivity() {
     }
 
     private fun btnUpgradeArmorClick(v: View){
-        //TODO HACER REQUESITOS
+        //TODO HACER REQUESITOS (recipe)
         //TODO CREAR LABEL QUE MUESTRE STATS ACTUALES
         playerArmor.increaseLevel()
 

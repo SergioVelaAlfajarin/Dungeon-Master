@@ -52,4 +52,5 @@
     <string name="clearRankingTitle">Borrar Ranking</string>
     <string name="clearRankingMsg">¿Quieres borrar todas las puntuaciones?</string>
     <string name="acceptOp">Aceptar</string>
+    <string name="itemPreviewDialogTitle">Nivel %1$d Drops</string>
 </resources>

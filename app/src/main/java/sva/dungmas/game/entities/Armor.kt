@@ -1,11 +1,19 @@
 package sva.dungmas.game.entities
 
+import sva.dungmas.R
+import sva.dungmas.game.Game
+
 class Armor {
     fun increaseLevel() {
-        stats.vit += 2
-        stats.atk += 2
-        stats.def += 2
-
+        if(Game.easyMode){
+            stats.vit += 3
+            stats.atk += 3
+            stats.def += 3
+        }else{
+            stats.vit += 2
+            stats.atk += 2
+            stats.def += 2
+        }
         level++
     }
 
@@ -16,9 +24,9 @@ class Armor {
     val icon: Int
         get(){ //TODO iconos amardura
             return when(level){
-                in 1..10 -> 0
-                in 10..20 -> 1
-                else -> 2
+                in 1..10 -> R.drawable.iron
+                in 10..20 -> R.drawable.wood
+                else -> R.drawable.leaves
             }
         }
     var vit: Int

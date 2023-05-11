@@ -25,6 +25,14 @@ object Game {
         defaultEnemyStats = Stats(1,1,1)
         bdManager = BDManager()
         genEnemies()
+        level = 0
+    }
+
+    fun reset() {
+        defaultEnemyStats = Stats(1,1,1)
+        bdManager = BDManager()
+        genEnemies()
+        level = 0
     }
 
     fun increaseLevel(){
@@ -47,10 +55,10 @@ object Game {
         }
     }
 
-    fun getLevelDrop(): HashMap<ItemPart, Int> {
+    fun getLevelDrop(): LinkedHashMap<ItemPart, Int> {
         val items: List<ItemPart> = bdManager.getItemsPart()
-        val hashMap: HashMap<ItemPart, Int> = hashMapOf()
-        val qnty = (level * (if(easyMode) 1.5 else 3.0)).toInt()
+        val hashMap: LinkedHashMap<ItemPart, Int> = linkedMapOf()
+        val qnty = (level.coerceAtLeast(1) * (if(!easyMode) 1.5 else 2.5)).toInt()
         items.forEach{
             hashMap[it] = qnty
         }
@@ -85,6 +93,6 @@ object Game {
                 putString("lang", value)
             }
         }
-    var level = 1
+    var level = 0
         private set
 }
