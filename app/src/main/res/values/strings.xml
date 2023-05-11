@@ -36,7 +36,7 @@
     <string name="vit">Vitalidad: %1$d</string>
     <string name="atk">Ataque: %1$d</string>
     <string name="def">Defensa: %1$d</string>
-    <string name="quantity">Cantidad: %1$d</string>
+    <string name="qntyOnInv">Tienes: x%1$d</string>
     <string name="invTitle">Inventario de %1$s</string>
     <string name="craftable">Fabricable</string>
     <string name="needed">Necesitas:</string>
@@ -53,4 +53,7 @@
     <string name="clearRankingMsg">¿Quieres borrar todas las puntuaciones?</string>
     <string name="acceptOp">Aceptar</string>
     <string name="itemPreviewDialogTitle">Nivel %1$d Drops</string>
+    <string name="lvlCompletedMsg">Nivel completado. Obtenidos objetos</string>
+    <string name="entriesDeleted">Se han borrado los registros.</string>
+    <string name="settingsSaved">Ajustes Guardados</string>
 </resources>

@@ -1,7 +1,6 @@
 package sva.dungmas.activities
 
 import android.content.Context
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
 import sva.dungmas.R
 import sva.dungmas.game.Game
 import sva.dungmas.game.entities.Inventory
@@ -67,7 +65,7 @@ class InventoryActivity : AppCompatActivity() { //TODO TEST
         override fun onBindViewHolder(holder: InventoryViewHolder, position: Int) {
             holder.imgItem.setImageResource(keyset[position].iconResId)
             holder.lblItemName.text = keyset[position].name
-            holder.lblItemQnty.text = context.getString(R.string.quantity, inv[keyset[position]])
+            holder.lblItemQnty.text = context.getString(R.string.qntyOnInv, inv[keyset[position]])
         }
 
         fun updateInventory(){

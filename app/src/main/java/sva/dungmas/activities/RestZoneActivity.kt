@@ -1,6 +1,5 @@
 package sva.dungmas.activities
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +15,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import sva.dungmas.R
 import sva.dungmas.dialogs.ConfirmCallback
 import sva.dungmas.dialogs.ConfirmDialog
@@ -62,6 +62,13 @@ class RestZoneActivity : AppCompatActivity() {
                 val itemsDropped: LinkedHashMap<ItemPart, Int> = Game.getLevelDrop()
                 //TODO informar al usuario de los objetos dropeados (custom dialog?)
                 //Game.player.addItemsToInventory(itemsDropped)
+
+                Snackbar.make(
+                    findViewById(R.id.restZoneLayout),
+                    R.string.lvlCompletedMsg,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+
                 updateLblLevel()
             }
         }

@@ -4,27 +4,18 @@ import android.content.Context
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Im
-import android.view.ContextMenu
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import sva.dungmas.R
-import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
-import sva.dungmas.game.entities.Inventory
 import sva.dungmas.game.items.Item
-import sva.dungmas.game.items.ItemPart
 import kotlin.streams.toList
 
 class CraftActivity : AppCompatActivity() {
@@ -78,7 +69,7 @@ class CraftActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: CraftViewHolder, position: Int) {
-            val text = context.getString(R.string.quantity, Game.player.inventory[item[position]])
+            val text = context.getString(R.string.qntyOnInv, Game.player.inventory[item[position]])
             val isCraftable: Boolean = Game.player.inventory.checkIfItemIsCraftable(item[position])
             with(holder){
                 imgItem.setImageResource(item[position].iconResId)

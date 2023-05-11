@@ -11,6 +11,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.snackbar.Snackbar
 import sva.dungmas.R
 import sva.dungmas.bbdd.BDManager
 import sva.dungmas.dialogs.SimpleDialog
@@ -45,10 +46,18 @@ class MainActivity : AppCompatActivity() {
             }
             Codes.OK.code -> Log.d(":::", "onActivityResult: FINISHED ACTIVITY OK")
             Codes.UPDATE_SETTINGS.code ->{
+                Snackbar.make(
+                    findViewById(R.id.mainLayout),
+                    R.string.settingsSaved,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+
                 updateSettings()
-                recreate() //TODO does not work (used to change lang)
+                //recreate() //TODO does not work (used to change lang)
                 //finish()
                 //startActivity(intent)
+
+
             }
         }
     }

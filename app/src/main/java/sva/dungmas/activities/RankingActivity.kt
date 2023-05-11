@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import sva.dungmas.R
 import sva.dungmas.dialogs.ConfirmCallback
 import sva.dungmas.dialogs.ConfirmDialog
@@ -59,9 +60,15 @@ class RankingActivity : AppCompatActivity() {
                 override fun dialogOk() {
                     //TODO delete also on database
                     recyclerAdapter.resetList()
+
+                    Snackbar.make(
+                        findViewById(R.id.rankingLayout),
+                        R.string.entriesDeleted,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
             }
-        )
+        ).show(supportFragmentManager, ":::")
 
     override fun finish() {
         setResult(Codes.OK.code)
