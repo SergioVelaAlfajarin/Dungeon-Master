@@ -24,20 +24,20 @@ class BDManager {
     fun getCraftableItems(): List<Item> {
         //TODO("Not yet implemented")
         return listOf(
-            Item(1, R.drawable.wood, "Wood", hashMapOf()),
-            Item(2, R.drawable.iron, "Iron", hashMapOf()),
-            Item(3, R.drawable.rock, "Rock", hashMapOf()),
-            Item(4, R.drawable.leaves, "Leaves", hashMapOf()),
+            Item(1, R.drawable.wood, "Wood", hashMapOf(getItemsPart(1) to 3)),
+            Item(2, R.drawable.iron, "Iron", hashMapOf(getItemsPart(2) to 3)),
+            Item(3, R.drawable.rock, "Rock", hashMapOf(getItemsPart(3) to 3)),
+            Item(4, R.drawable.leaves, "Leaves", hashMapOf(getItemsPart(4) to 3)),
         )
     }
 
     fun getCraftableItems(id: Int): Item{
         //TODO("Not yet implemented")
         return listOf(
-            Item(1, R.drawable.wood, "Wood", hashMapOf()),
-            Item(2, R.drawable.iron, "Iron", hashMapOf()),
-            Item(3, R.drawable.rock, "Rock", hashMapOf()),
-            Item(4, R.drawable.leaves, "Leaves", hashMapOf()),
+            Item(1, R.drawable.wood, "Wood", hashMapOf(getItemsPart(1) to 3)),
+            Item(2, R.drawable.iron, "Iron", hashMapOf(getItemsPart(2) to 3)),
+            Item(3, R.drawable.rock, "Rock", hashMapOf(getItemsPart(3) to 3)),
+            Item(4, R.drawable.leaves, "Leaves", hashMapOf(getItemsPart(4) to 3)),
         )[id - 1]
     }
 

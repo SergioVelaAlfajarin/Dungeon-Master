@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerCraftView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerRecipes"
+        android:id="@+id/recyclerUpgradeArmor"
         android:layout_width="308dp"
         android:layout_height="75dp"
         android:layout_marginTop="16dp"

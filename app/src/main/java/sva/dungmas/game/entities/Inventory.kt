@@ -3,11 +3,13 @@ package sva.dungmas.game.entities
 import android.util.Log
 import sva.dungmas.R
 import sva.dungmas.game.items.Item
+import sva.dungmas.game.items.ItemPart
 import sva.dungmas.game.items.Storable
 import kotlin.streams.toList
 
 
 class Inventory {
+    //TODO tests
     private val inventory: LinkedHashMap<Storable, Int> = linkedMapOf()
 
     val isEmpty: Boolean
@@ -23,16 +25,11 @@ class Inventory {
             return inventory.keys
         }
 
-    fun add(it: Storable) {
-        inventory[it] = (inventory[it] ?: 0) + 1
-    }
-
     operator fun get(it: Storable): Int {
         return inventory[it] ?: 0
     }
 
     fun checkIfItemIsCraftable(item: Item): Boolean {
-        //TODO tests
         var isCraftable = true
         item.recipe.forEach { (key, value) -> 
             val qntyInInv = inventory[key] ?: 0
@@ -43,5 +40,18 @@ class Inventory {
         return isCraftable
     }
 
+    fun add(it: Storable) {
+        add(it, 1)
+    }
 
+    fun add(it: Storable, qnty: Int){
+        Log.d(":::", "add: it: $it, qnty: $qnty")
+        inventory[it] = (inventory[it] ?: 0) + qnty
+    }
+
+    fun addItemsDropped(itemsDropped: LinkedHashMap<ItemPart, Int>) {
+        itemsDropped.forEach { (key, value) ->
+            add(key, value)
+        }
+    }
 }

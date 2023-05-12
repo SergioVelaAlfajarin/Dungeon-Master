@@ -66,6 +66,19 @@ object Game {
         return hashMap
     }
 
+    fun getNextLevelDrop(): LinkedHashMap<ItemPart, Int> {
+        level++
+        val items: List<ItemPart> = bdManager.getItemsPart()
+        val hashMap: LinkedHashMap<ItemPart, Int> = linkedMapOf()
+        val qnty = (level * (if(!easyMode) 1.5 else 2.5)).toInt()
+        items.forEach{
+            hashMap[it] = qnty
+        }
+        Log.d(":::", "getNextLevelDrop: $hashMap")
+        level--
+        return hashMap
+    }
+
     var easyMode: Boolean
         get(){
             return preferences.getBoolean("easyMode", false)

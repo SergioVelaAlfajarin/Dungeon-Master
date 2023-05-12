@@ -1,5 +1,6 @@
 package sva.dungmas.activities
 
+import InventoryRecyclerAdapter
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -42,41 +43,5 @@ class InventoryActivity : AppCompatActivity() { //TODO TEST
 
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = GridLayoutManager(this, 2)
-    }
-
-    //-----------------------------
-
-    class InventoryRecyclerAdapter(
-        private val context: Context,
-        private val inv: Inventory
-    ): RecyclerView.Adapter<InventoryViewHolder>(){
-        private var keyset = inv.keySet.stream().toList()
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InventoryViewHolder {
-            val inflater = LayoutInflater.from(parent.context)
-            val view = inflater.inflate(R.layout.inv_list_item, parent, false)
-            return InventoryViewHolder(view)
-        }
-
-        override fun getItemCount(): Int {
-            return inv.size
-        }
-
-        override fun onBindViewHolder(holder: InventoryViewHolder, position: Int) {
-            holder.imgItem.setImageResource(keyset[position].iconResId)
-            holder.lblItemName.text = keyset[position].name
-            holder.lblItemQnty.text = context.getString(R.string.qntyOnInv, inv[keyset[position]])
-        }
-
-        fun updateInventory(){
-            keyset = inv.keySet.stream().toList()
-            notifyDataSetChanged()
-        }
-    }
-
-    class InventoryViewHolder(v: View) : RecyclerView.ViewHolder(v){
-        val imgItem: ImageView = v.findViewById(R.id.imgItemInv)
-        val lblItemName: TextView = v.findViewById(R.id.lblItemNameInv)
-        val lblItemQnty: TextView = v.findViewById(R.id.lblItemQntyInv)
     }
 }
