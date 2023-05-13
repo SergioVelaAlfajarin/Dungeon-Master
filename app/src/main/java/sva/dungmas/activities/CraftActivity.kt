@@ -1,24 +1,15 @@
 package sva.dungmas.activities
 
-import android.content.Context
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import sva.dungmas.R
 import sva.dungmas.game.Game
-import sva.dungmas.game.items.Item
 import sva.dungmas.recyclers.CraftRecyclerAdapter
 import sva.dungmas.recyclers.RecipeRecyclerAdapter
-import kotlin.streams.toList
 
 class CraftActivity : AppCompatActivity() {
     private lateinit var recyclerAdapter: CraftRecyclerAdapter
@@ -36,7 +27,8 @@ class CraftActivity : AppCompatActivity() {
         recyclerAdapter = CraftRecyclerAdapter(this)
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recipeRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recipeRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         btnCraft.setOnClickListener(this::btnCraftClick)
     }
@@ -45,7 +37,7 @@ class CraftActivity : AppCompatActivity() {
         //only clickable if enough items in inventory
         val item = recyclerAdapter.selectedItem
         val inv = Game.player.inventory
-        item.recipe.forEach{(key, value) ->
+        item.recipe.forEach { (key, value) ->
             inv.remove(key, value)
         }
         inv.add(item)
@@ -54,7 +46,7 @@ class CraftActivity : AppCompatActivity() {
         updateCraftButton(inv.checkIfItemIsCraftable(item))
     }
 
-    fun updateRecipeRecycler(){
+    fun updateRecipeRecycler() {
         val item = recyclerAdapter.selectedItem
         recipeRecyclerView.adapter = RecipeRecyclerAdapter(item.recipe)
     }

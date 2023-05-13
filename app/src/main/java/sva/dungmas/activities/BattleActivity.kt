@@ -1,8 +1,8 @@
 package sva.dungmas.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import sva.dungmas.R
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
@@ -23,11 +23,11 @@ class BattleActivity : AppCompatActivity() {
     }
 
 
-    private fun onBattleEnd(){
+    private fun onBattleEnd() {
         if (battleWon && isRepeating) {
             Log.d(":::", "onBattleEnd: battle won and is repeating")
             setResult(Codes.BATTLE_WON.code)
-        } else if(battleWon){
+        } else if (battleWon) {
             Log.d(":::", "onBattleEnd: battle won and not repeating")
             Game.increaseLevel()
             setResult(Codes.BATTLE_WON.code)

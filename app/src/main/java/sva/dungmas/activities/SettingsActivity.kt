@@ -1,10 +1,10 @@
 package sva.dungmas.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import sva.dungmas.R
@@ -46,22 +46,22 @@ class SettingsActivity : AppCompatActivity() {
         }*/
     }
 
-    private fun setButtonsEvents(){
+    private fun setButtonsEvents() {
         (findViewById<FloatingActionButton>(R.id.btnCancelSettings))
             .setOnClickListener(this::btnCancelSettingsClick)
         (findViewById<FloatingActionButton>(R.id.btnSaveSettings))
             .setOnClickListener(this::btnSaveSettingsClick)
     }
 
-    private fun btnCancelSettingsClick(v: View){
+    private fun btnCancelSettingsClick(v: View) {
         setResult(Codes.OK.code)
         finish()
     }
 
-    private fun btnSaveSettingsClick(v: View){
+    private fun btnSaveSettingsClick(v: View) {
         Game.easyMode = diffSwitch.isChecked
         Game.darkMode = darkSwitch.isChecked
-        Game.lang = when(spinner.selectedItem){
+        Game.lang = when (spinner.selectedItem) {
             getString(R.string.spa) -> "es"
             getString(R.string.eng) -> "en"
             else -> ""

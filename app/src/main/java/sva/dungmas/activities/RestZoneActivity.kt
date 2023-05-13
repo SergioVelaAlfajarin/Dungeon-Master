@@ -1,18 +1,15 @@
 package sva.dungmas.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -44,20 +41,21 @@ class RestZoneActivity : AppCompatActivity() {
         updateLblLevel()
         setButtonsEvents()
 
-        onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
+        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 confirmExit()
             }
         })
     }
 
-    private fun onActivityResult(result: ActivityResult){
-        when(result.resultCode){
-            Codes.BATTLE_LOST.code ->{
+    private fun onActivityResult(result: ActivityResult) {
+        when (result.resultCode) {
+            Codes.BATTLE_LOST.code -> {
                 SimpleDialog("info", "has perdido")
                     .show(supportFragmentManager, "info")
                 finish()
             }
+
             Codes.BATTLE_WON.code -> {
                 btnRepeatLevel.isEnabled = true
                 val itemsDropped: LinkedHashMap<ItemPart, Int> = Game.getLevelDrop()
@@ -75,7 +73,7 @@ class RestZoneActivity : AppCompatActivity() {
         }
     }
 
-    private fun setButtonsEvents(){
+    private fun setButtonsEvents() {
         (findViewById<Button>(R.id.btnLevelInfo))
             .setOnClickListener(this::btnLevelInfoClick)
         (findViewById<Button>(R.id.btnLeaveGame))
@@ -95,7 +93,7 @@ class RestZoneActivity : AppCompatActivity() {
         btnRepeatLevel.isEnabled = false
     }
 
-    private fun btnLevelInfoClick(v: View){
+    private fun btnLevelInfoClick(v: View) {
         val view = layoutInflater.inflate(R.layout.preview_dialog, null)
 
         val recycler = view.findViewById<RecyclerView>(R.id.recyclerItemPreview)
@@ -106,7 +104,7 @@ class RestZoneActivity : AppCompatActivity() {
             .show(supportFragmentManager, ":::")
     }
 
-    private fun btnLeaveGameClick(v: View){
+    private fun btnLeaveGameClick(v: View) {
         confirmExit()
     }
 
@@ -123,22 +121,22 @@ class RestZoneActivity : AppCompatActivity() {
         }
     ).show(supportFragmentManager, ":::")
 
-    private fun btnUpgradeClick(v: View){
+    private fun btnUpgradeClick(v: View) {
         val it = Intent(this, UpgradeActivity::class.java)
         launcher.launch(it)
     }
 
-    private fun btnCraftClick(v: View){
+    private fun btnCraftClick(v: View) {
         val it = Intent(this, CraftActivity::class.java)
         launcher.launch(it)
     }
 
-    private fun btnInventoryClick(v: View){
+    private fun btnInventoryClick(v: View) {
         val it = Intent(this, InventoryActivity::class.java)
         launcher.launch(it)
     }
 
-    private fun btnRepeatLevelClick(v: View){
+    private fun btnRepeatLevelClick(v: View) {
         val it = Intent(this, BattleActivity::class.java)
         val bd = Bundle()
         bd.putBoolean("repeat", true)
@@ -146,7 +144,7 @@ class RestZoneActivity : AppCompatActivity() {
         launcher.launch(it)
     }
 
-    private fun btnNextLevelClick(v: View){
+    private fun btnNextLevelClick(v: View) {
         val it = Intent(this, BattleActivity::class.java)
         val bd = Bundle()
         bd.putBoolean("repeat", false)

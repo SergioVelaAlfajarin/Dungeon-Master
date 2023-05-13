@@ -1,7 +1,6 @@
 package sva.dungmas.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,7 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.core.view.get
+import androidx.appcompat.app.AppCompatActivity
 import sva.dungmas.R
 import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
@@ -38,7 +37,7 @@ class CreatePlayerActivity : AppCompatActivity() {
         etName.setText("placeholder")
     }
 
-    private fun fillSpinner(){
+    private fun fillSpinner() {
         val jobs = DefaultJobs.values()
         val jobsName = jobs.map { getNameByJob(it) }
 
@@ -48,11 +47,17 @@ class CreatePlayerActivity : AppCompatActivity() {
             jobsName
         )
 
-        spinner.onItemSelectedListener =  object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 val job = getJobByName(spinner.adapter.getItem(id.toInt()).toString())
                 updateLabel(job)
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 lblJobInfo.text = ""
             }
@@ -67,32 +72,32 @@ class CreatePlayerActivity : AppCompatActivity() {
         """.trimIndent()
     }
 
-    private fun getNameByJob(job: DefaultJobs): String{
-        return when(job){
+    private fun getNameByJob(job: DefaultJobs): String {
+        return when (job) {
             DefaultJobs.KNIGHT -> getString(R.string.knightJobName)
             DefaultJobs.ASSASSIN -> getString(R.string.assassinJobName)
             DefaultJobs.TANK -> getString(R.string.tankJobName)
         }
     }
 
-    private fun getJobByName(name: String): DefaultJobs{
-        return when(name){
+    private fun getJobByName(name: String): DefaultJobs {
+        return when (name) {
             getString(R.string.knightJobName) -> DefaultJobs.KNIGHT
             getString(R.string.assassinJobName) -> DefaultJobs.ASSASSIN
             else -> DefaultJobs.TANK //evito errores
         }
     }
 
-    private fun setButtonsEvents(){
+    private fun setButtonsEvents() {
         (findViewById<Button>(R.id.btnCreatePlayer))
             .setOnClickListener(this::btnCreatePlayerClick)
     }
 
-    private fun btnCreatePlayerClick(v: View){
+    private fun btnCreatePlayerClick(v: View) {
         val job = getJobByName(spinner.selectedItem.toString())
         val name = etName.text.toString()
 
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             SimpleDialog("info", "et vacio")
                 .show(supportFragmentManager, "info")
             return

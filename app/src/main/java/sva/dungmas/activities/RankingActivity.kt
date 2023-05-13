@@ -1,11 +1,8 @@
 package sva.dungmas.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,16 +22,16 @@ class RankingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ranking)
 
         val list = hashMapOf(
-            0  to "YOOOO",
-            1  to "-",
-            2  to "-",
-            3  to "-",
-            4  to "-",
-            5  to "-",
-            6  to "-",
-            7  to "-",
-            8  to "-",
-            9  to "-",
+            0 to "YOOOO",
+            1 to "-",
+            2 to "-",
+            3 to "-",
+            4 to "-",
+            5 to "-",
+            6 to "-",
+            7 to "-",
+            8 to "-",
+            9 to "-",
         )
 
         recyclerAdapter = RankingRecyclerAdapter(list)
@@ -46,7 +43,7 @@ class RankingActivity : AppCompatActivity() {
         setButtonsEvents()
     }
 
-    private fun setButtonsEvents(){
+    private fun setButtonsEvents() {
         (findViewById<FloatingActionButton>(R.id.btnClearRanking))
             .setOnClickListener(this::btnClearRankingClick)
     }

@@ -1,11 +1,11 @@
 package sva.dungmas.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import sva.dungmas.R
@@ -30,8 +30,10 @@ class UpgradeActivity : AppCompatActivity() {
         recyclerUpgradeArmor = findViewById(R.id.recyclerUpgradeArmor)
         btnUpgrade = findViewById<Button>(R.id.btnUpgradeArmor)
 
-        recyclerUpgradeArmor.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recyclerUpgradeArmor.adapter = RecipeRecyclerAdapter(playerArmor.getRequirementsForNextLevel())
+        recyclerUpgradeArmor.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerUpgradeArmor.adapter =
+            RecipeRecyclerAdapter(playerArmor.getRequirementsForNextLevel())
         btnUpgrade.setOnClickListener(this::btnUpgradeArmorClick)
 
         updateLabel()
@@ -45,20 +47,21 @@ class UpgradeActivity : AppCompatActivity() {
         lblArmorLevel.text = getString(R.string.level, playerArmor.level)
     }
 
-    private fun updateButton(){
+    private fun updateButton() {
         btnUpgrade.isEnabled = playerArmor.canBeUpgraded()
     }
 
-    private fun btnUpgradeArmorClick(v: View){
+    private fun btnUpgradeArmorClick(v: View) {
         //TODO CREAR LABEL QUE MUESTRE STATS ACTUALES
         val requirements = playerArmor.getRequirementsForNextLevel()
-        requirements.forEach{(key, value) ->
+        requirements.forEach { (key, value) ->
             Game.player.inventory.remove(key, value)
         }
         playerArmor.increaseLevel()
         updateIcon()
         updateLabel()
         updateButton()
-        recyclerUpgradeArmor.adapter = RecipeRecyclerAdapter(playerArmor.getRequirementsForNextLevel())
+        recyclerUpgradeArmor.adapter =
+            RecipeRecyclerAdapter(playerArmor.getRequirementsForNextLevel())
     }
 }
