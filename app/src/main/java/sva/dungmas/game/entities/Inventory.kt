@@ -29,11 +29,15 @@ class Inventory {
         return inventory[it] ?: 0
     }
 
+    fun hasEnoughOf(storable: Storable, howMany: Int): Boolean{
+        val got = get(storable)
+        return got >= howMany
+    }
+
     fun checkIfItemIsCraftable(item: Item): Boolean {
         var isCraftable = true
         item.recipe.forEach { (key, value) -> 
-            val qntyInInv = inventory[key] ?: 0
-            if(qntyInInv < value){
+            if(!hasEnoughOf(key, value)){
                 isCraftable = false
             }
         }
@@ -45,7 +49,7 @@ class Inventory {
     }
 
     fun add(it: Storable, qnty: Int){
-        Log.d(":::", "add: it: $it, qnty: $qnty")
+        //Log.d(":::", "add: it: $it, qnty: $qnty")
         inventory[it] = (inventory[it] ?: 0) + qnty
     }
 

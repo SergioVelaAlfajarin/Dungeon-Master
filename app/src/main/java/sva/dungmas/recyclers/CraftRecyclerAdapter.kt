@@ -39,7 +39,7 @@ class CraftRecyclerAdapter(val context: Context): RecyclerView.Adapter<CraftView
         val isCraftable: Boolean = Game.player.inventory.checkIfItemIsCraftable(item[position])
         with(holder){
             imgItem.setImageResource(item[position].iconResId)
-            lblItemName.text = item[position].name
+            lblItemName.text = context.getString(item[position].nameResId)
             lblItemQnty.text = text
             checkCraftable.isChecked = isCraftable
             checkCraftable.isEnabled = false

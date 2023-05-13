@@ -48,7 +48,7 @@
     <string name="itemName_wood">Madera</string>
     <string name="itemName_iron">Hierro</string>
     <string name="itemName_leaves">Hojas</string>
-    <string name="itemName_rock">Roca</string>
+    <string name="itemName_rock">Piedra</string>
     <string name="clearRankingTitle">Borrar Ranking</string>
     <string name="clearRankingMsg">¿Quieres borrar todas las puntuaciones?</string>
     <string name="acceptOp">Aceptar</string>
@@ -56,4 +56,8 @@
     <string name="lvlCompletedMsg">Nivel completado. Obtenidos objetos</string>
     <string name="entriesDeleted">Se han borrado los registros.</string>
     <string name="settingsSaved">Ajustes Guardados</string>
+    <string name="itemName_wood2">Madera Reforzada</string>
+    <string name="itemName_iron2">Acero</string>
+    <string name="itemName_leaves2">Grupo de hojas</string>
+    <string name="itemName_rock2">Roca</string>
 </resources>

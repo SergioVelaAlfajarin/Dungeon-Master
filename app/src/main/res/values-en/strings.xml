@@ -48,7 +48,7 @@
     <string name="itemName_wood">Wood</string>
     <string name="itemName_iron">Iron</string>
     <string name="itemName_leaves">Leaves</string>
-    <string name="itemName_rock">Rock</string>
+    <string name="itemName_rock">Stone</string>
     <string name="clearRankingTitle">Clear Ranking</string>
     <string name="clearRankingMsg">Do you want to delete all entries?</string>
     <string name="acceptOp">Accept</string>
@@ -56,4 +56,8 @@
     <string name="lvlCompletedMsg">Level Completed. Obtained items.</string>
     <string name="entriesDeleted">The entries have been deleted.</string>
     <string name="settingsSaved">Settings Saved</string>
+    <string name="itemName_wood2">Reinforced Wood</string>
+    <string name="itemName_iron2">Steel</string>
+    <string name="itemName_leaves2">Leaves group</string>
+    <string name="itemName_rock2">Rock</string>
 </resources>

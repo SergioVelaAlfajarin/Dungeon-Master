@@ -37,6 +37,13 @@ class CraftActivity : AppCompatActivity() {
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         recipeRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        btnCraft.setOnClickListener(this::btnCraftClick)
+    }
+
+    private fun btnCraftClick(v: View) {
+        //only clickable if enough items in inventory
+
     }
 
     fun updateRecipeRecycler(){

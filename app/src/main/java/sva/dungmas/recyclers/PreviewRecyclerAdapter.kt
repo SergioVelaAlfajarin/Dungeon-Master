@@ -1,5 +1,6 @@
 package sva.dungmas.recyclers
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import sva.dungmas.R
 import sva.dungmas.game.Game
 
-class PreviewRecyclerAdapter(): RecyclerView.Adapter<PreviewViewHolder>(){
+class PreviewRecyclerAdapter(val context: Context): RecyclerView.Adapter<PreviewViewHolder>(){
     private val drops = Game.getNextLevelDrop()
     private val keyset = drops.keys.toList()
 
@@ -24,7 +25,7 @@ class PreviewRecyclerAdapter(): RecyclerView.Adapter<PreviewViewHolder>(){
 
     override fun onBindViewHolder(holder: PreviewViewHolder, position: Int) {
         holder.imgItemIconDialog.setImageResource(keyset[position].iconResId)
-        holder.lblItemNameDialog.text = keyset[position].name
+        holder.lblItemNameDialog.text = context.getString(keyset[position].nameResId)
         holder.lblItemQntyDialog.text = "x${drops[keyset[position]]}"
     }
 }

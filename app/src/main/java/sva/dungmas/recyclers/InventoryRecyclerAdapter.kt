@@ -27,7 +27,7 @@ class InventoryRecyclerAdapter(
 
     override fun onBindViewHolder(holder: InventoryViewHolder, position: Int) {
         holder.imgItem.setImageResource(keyset[position].iconResId)
-        holder.lblItemName.text = keyset[position].name
+        holder.lblItemName.text = context.getString(keyset[position].nameResId)
         holder.lblItemQnty.text = context.getString(R.string.qntyOnInv, inv[keyset[position]])
     }
 

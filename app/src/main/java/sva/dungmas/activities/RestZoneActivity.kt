@@ -100,7 +100,7 @@ class RestZoneActivity : AppCompatActivity() {
 
         val recycler = view.findViewById<RecyclerView>(R.id.recyclerItemPreview)
         recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = PreviewRecyclerAdapter()
+        recycler.adapter = PreviewRecyclerAdapter(this)
 
         CustomDialog(getString(R.string.itemPreviewDialogTitle, Game.level + 1), view)
             .show(supportFragmentManager, ":::")

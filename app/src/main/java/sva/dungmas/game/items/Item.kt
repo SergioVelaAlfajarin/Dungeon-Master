@@ -3,7 +3,7 @@ package sva.dungmas.game.items
 data class Item(
     val id: Int,
     override val iconResId: Int,
-    override val name: String,
+    override val nameResId: Int,
     val recipe: HashMap<Storable, Int>
 ) : Storable{
     override fun equals(other: Any?): Boolean {
