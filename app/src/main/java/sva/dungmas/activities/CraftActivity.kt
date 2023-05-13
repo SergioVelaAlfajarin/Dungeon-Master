@@ -43,7 +43,15 @@ class CraftActivity : AppCompatActivity() {
 
     private fun btnCraftClick(v: View) {
         //only clickable if enough items in inventory
-
+        val item = recyclerAdapter.selectedItem
+        val inv = Game.player.inventory
+        item.recipe.forEach{(key, value) ->
+            inv.remove(key, value)
+        }
+        inv.add(item)
+        recyclerAdapter.notifyDataSetChanged()
+        updateRecipeRecycler()
+        updateCraftButton(inv.checkIfItemIsCraftable(item))
     }
 
     fun updateRecipeRecycler(){

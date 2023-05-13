@@ -18,22 +18,25 @@ class UpgradeActivity : AppCompatActivity() {
     private lateinit var imgArmorIcon: ImageView
     private lateinit var lblArmorLevel: TextView
     private lateinit var recyclerUpgradeArmor: RecyclerView
+    private lateinit var btnUpgrade: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upgrade)
+
         playerArmor = Game.player.armor
         imgArmorIcon = findViewById(R.id.imgArmorIcon)
         lblArmorLevel = findViewById(R.id.lblArmorLvl)
         recyclerUpgradeArmor = findViewById(R.id.recyclerUpgradeArmor)
+        btnUpgrade = findViewById<Button>(R.id.btnUpgradeArmor)
+
         recyclerUpgradeArmor.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerUpgradeArmor.adapter = RecipeRecyclerAdapter(playerArmor.getRequirementsForNextLevel())
+        btnUpgrade.setOnClickListener(this::btnUpgradeArmorClick)
 
         updateLabel()
         updateIcon()
-
-        (findViewById<Button>(R.id.btnUpgradeArmor))
-            .setOnClickListener(this::btnUpgradeArmorClick)
+        updateButton()
     }
 
     private fun updateIcon() = imgArmorIcon.setImageResource(playerArmor.icon)
@@ -42,12 +45,20 @@ class UpgradeActivity : AppCompatActivity() {
         lblArmorLevel.text = getString(R.string.level, playerArmor.level)
     }
 
+    private fun updateButton(){
+        btnUpgrade.isEnabled = playerArmor.canBeUpgraded()
+    }
+
     private fun btnUpgradeArmorClick(v: View){
-        //TODO HACER REQUESITOS (recipe)
         //TODO CREAR LABEL QUE MUESTRE STATS ACTUALES
+        val requirements = playerArmor.getRequirementsForNextLevel()
+        requirements.forEach{(key, value) ->
+            Game.player.inventory.remove(key, value)
+        }
         playerArmor.increaseLevel()
         updateIcon()
         updateLabel()
+        updateButton()
         recyclerUpgradeArmor.adapter = RecipeRecyclerAdapter(playerArmor.getRequirementsForNextLevel())
     }
 }

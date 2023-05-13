@@ -8,15 +8,26 @@ import sva.dungmas.game.items.Storable
 class Armor {
     fun increaseLevel() {
         if(Game.easyMode){
-            stats.vit += 3
-            stats.atk += 3
-            stats.def += 3
+            stats.vit += 10
+            stats.atk += 10
+            stats.def += 10
         }else{
-            stats.vit += 2
-            stats.atk += 2
-            stats.def += 2
+            stats.vit += 7
+            stats.atk += 7
+            stats.def += 7
         }
         level++
+    }
+
+    fun canBeUpgraded():Boolean{
+        var upgradable = true
+        getRequirementsForNextLevel().forEach{(key, value) ->
+            val enough = Game.player.inventory.hasEnoughOf(key, value)
+            if(!enough){
+                upgradable = false
+            }
+        }
+        return upgradable
     }
 
     fun getRequirementsForNextLevel(): LinkedHashMap<Storable, Int>{

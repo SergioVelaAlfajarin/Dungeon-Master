@@ -34,9 +34,8 @@ class RecipeRecyclerAdapter(private val recipe: HashMap<Storable, Int>): Recycle
         with(holder){
             lblQntyNeeded.text = "x${qntyNeeded}"
             imgItemRecipe.setImageResource(icon)
-
             if(!inv.hasEnoughOf(keys[position], qntyNeeded)){
-                itemView.setBackgroundColor(Color.red(100))
+                itemView.setBackgroundColor(Color.RED)
             }else{
                 itemView.setBackgroundColor(Color.TRANSPARENT)
             }

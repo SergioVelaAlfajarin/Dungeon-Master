@@ -29,6 +29,32 @@ class Inventory {
         return inventory[it] ?: 0
     }
 
+    fun removeAll(storable: Storable){
+        inventory.remove(storable)
+    }
+
+    fun removeOne(storable: Storable){
+        if(inventory.containsKey(storable)){
+            val currrent = inventory[storable]?.minus(1) ?: 0
+            if(currrent > 0){
+                inventory[storable] = currrent
+            }else{
+                inventory.remove(storable)
+            }
+        }
+    }
+
+    fun remove(storable: Storable, howMany: Int){
+        if(inventory.containsKey(storable)){
+            val currrent = inventory[storable]?.minus(howMany) ?: 0
+            if(currrent > 0){
+                inventory[storable] = currrent
+            }else{
+                inventory.remove(storable)
+            }
+        }
+    }
+
     fun hasEnoughOf(storable: Storable, howMany: Int): Boolean{
         val got = get(storable)
         return got >= howMany
