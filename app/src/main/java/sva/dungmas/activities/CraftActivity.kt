@@ -16,12 +16,14 @@ class CraftActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var btnCraft: Button
+    private lateinit var btnCraftMax: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_craft)
 
         btnCraft = findViewById(R.id.btnCraftItem)
+        btnCraftMax = findViewById(R.id.btnCraftMax)
         recyclerView = findViewById(R.id.recyclerCraftView)
         recipeRecyclerView = findViewById(R.id.recyclerUpgradeArmor)
         recyclerAdapter = CraftRecyclerAdapter(this)
@@ -31,6 +33,11 @@ class CraftActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         btnCraft.setOnClickListener(this::btnCraftClick)
+        btnCraftMax.setOnClickListener(this::btnCraftMaxClick)
+    }
+
+    private fun btnCraftMaxClick(view: View) {
+        TODO("Not yet implemented")
     }
 
     private fun btnCraftClick(v: View) {

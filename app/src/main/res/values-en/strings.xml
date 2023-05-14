@@ -16,7 +16,6 @@
     <string name="saveSettings">Save Settings</string>
     <string name="langOp1">Choose a Language:</string>
     <string name="info">Information</string>
-    <string name="exit">Exit</string>
     <string name="upgArmor">Upgrade Armor</string>
     <string name="craftItems">Craft Items</string>
     <string name="inv">Inventory</string>
@@ -60,4 +59,10 @@
     <string name="itemName_iron2">Steel</string>
     <string name="itemName_leaves2">Leaves group</string>
     <string name="itemName_rock2">Rock</string>
+    <string name="craftMax">Craft Max</string>
+    <string name="itemsCurrentLevel">Items Current Level</string>
+    <string name="itemsNextLevel">Items Next Level</string>
+    <string name="statsInfo">Stats</string>
+    <string name="leaveGame">Leave Game</string>
+    <string name="lvl0drops">There are no items on this level</string>
 </resources>

@@ -2,16 +2,23 @@ package sva.dungmas.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import sva.dungmas.R
 import sva.dungmas.dialogs.ConfirmCallback
@@ -74,10 +81,16 @@ class RestZoneActivity : AppCompatActivity() {
     }
 
     private fun setButtonsEvents() {
-        (findViewById<Button>(R.id.btnLevelInfo))
-            .setOnClickListener(this::btnLevelInfoClick)
-        (findViewById<Button>(R.id.btnLeaveGame))
-            .setOnClickListener(this::btnLeaveGameClick)
+        val btn = (findViewById<FloatingActionButton>(R.id.btnInfo))
+        btn.setOnClickListener(this::btnInfoClick)
+
+        if(Game.darkMode) {
+            btn.setImageResource(R.drawable.dots_white)
+            btn.setColorFilter(R.color.white)
+        } else {
+            btn.setImageResource(R.drawable.dots_black)
+        }
+
         (findViewById<Button>(R.id.btnUpgrade))
             .setOnClickListener(this::btnUpgradeClick)
         (findViewById<Button>(R.id.btnCraft))
@@ -93,19 +106,45 @@ class RestZoneActivity : AppCompatActivity() {
         btnRepeatLevel.isEnabled = false
     }
 
-    private fun btnLevelInfoClick(v: View) {
-        val view = layoutInflater.inflate(R.layout.preview_dialog, null)
-
-        val recycler = view.findViewById<RecyclerView>(R.id.recyclerItemPreview)
-        recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = PreviewRecyclerAdapter(this)
-
-        CustomDialog(getString(R.string.itemPreviewDialogTitle, Game.level + 1), view)
-            .show(supportFragmentManager, ":::")
+    private fun btnInfoClick(v: View){
+        val popup = PopupMenu(this, v, Gravity.END)
+        val inflater: MenuInflater = popup.menuInflater
+        inflater.inflate(R.menu.rest_zone_menu, popup.menu)
+        popup.setOnMenuItemClickListener(this::onMenuClick)
+        popup.show()
     }
 
-    private fun btnLeaveGameClick(v: View) {
-        confirmExit()
+    private fun onMenuClick(menuItem: MenuItem): Boolean{
+        when(menuItem.itemId){
+            R.id.menuCurrentLvlDrops -> {
+                if(Game.level == 0){
+                    SimpleDialog(getString(R.string.itemPreviewDialogTitle, Game.level), getString(R.string.lvl0drops))
+                        .show(supportFragmentManager, ":::")
+                }else{
+                    val view = layoutInflater.inflate(R.layout.preview_dialog, null)
+                    val recycler = view.findViewById<RecyclerView>(R.id.recyclerItemPreview)
+                    recycler.layoutManager = LinearLayoutManager(this)
+                    recycler.adapter = PreviewRecyclerAdapter(this, false)
+                    CustomDialog(getString(R.string.itemPreviewDialogTitle, Game.level), view)
+                        .show(supportFragmentManager, ":::")
+                }
+            }
+            R.id.menuNextLvlDrops -> {
+                val view = layoutInflater.inflate(R.layout.preview_dialog, null)
+                val recycler = view.findViewById<RecyclerView>(R.id.recyclerItemPreview)
+                recycler.layoutManager = LinearLayoutManager(this)
+                recycler.adapter = PreviewRecyclerAdapter(this)
+                CustomDialog(getString(R.string.itemPreviewDialogTitle, Game.level + 1), view)
+                    .show(supportFragmentManager, ":::")
+            }
+            R.id.menuStatsInfo -> {
+                //CustomDialog()
+            }
+            R.id.menuExitGame -> {
+                confirmExit()
+            }
+        }
+        return true
     }
 
     private fun confirmExit() = ConfirmDialog(

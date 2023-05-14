@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuCurrentLvlDrops"
+        android:title="@string/itemsCurrentLevel" />
+    <item
+        android:id="@+id/menuNextLvlDrops"
+        android:title="@string/itemsNextLevel" />
+    <item
+        android:id="@+id/menuStatsInfo"
+        android:title="@string/statsInfo" />
+    <item
+        android:id="@+id/menuExitGame"
+        android:title="@string/leaveGame" />
+</menu>

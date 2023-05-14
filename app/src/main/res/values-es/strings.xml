@@ -16,7 +16,6 @@
     <string name="saveSettings">Guardar Ajustes</string>
     <string name="langOp1">Elige un idioma:</string>
     <string name="info">Informacion</string>
-    <string name="exit">Abandonar</string>
     <string name="upgArmor">Mejorar Armadura</string>
     <string name="craftItems">Fabricar objetos</string>
     <string name="inv">Inventario</string>
@@ -60,4 +59,10 @@
     <string name="itemName_iron2">Acero</string>
     <string name="itemName_leaves2">Grupo de hojas</string>
     <string name="itemName_rock2">Roca</string>
+    <string name="craftMax">Fabricar Max</string>
+    <string name="itemsCurrentLevel">Objetos Nivel Actual</string>
+    <string name="itemsNextLevel">Objetos Siguiente Nivel</string>
+    <string name="statsInfo">Estadisticas</string>
+    <string name="leaveGame">Abandonar</string>
+    <string name="lvl0drops">En este nivel no hay objetos</string>
 </resources>
