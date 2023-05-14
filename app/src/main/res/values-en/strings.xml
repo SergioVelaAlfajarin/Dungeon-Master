@@ -65,4 +65,6 @@
     <string name="statsInfo">Stats</string>
     <string name="leaveGame">Leave Game</string>
     <string name="lvl0drops">There are no items on this level</string>
+    <string name="itemsCrafted">You crafted %1$d items</string>
+    <string name="itemCrafted">You crafted an item</string>
 </resources>

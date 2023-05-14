@@ -34,8 +34,4 @@ class Player(
     override fun attack(other: Entity) {
         TODO("Not yet implemented")
     }
-
-    override fun toString(): String {
-        return "Player(name='$name', job=$job, inventory=$inventory, armor=$armor)"
-    }
 }

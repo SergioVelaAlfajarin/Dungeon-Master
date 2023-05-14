@@ -65,4 +65,6 @@
     <string name="statsInfo">Estadisticas</string>
     <string name="leaveGame">Abandonar</string>
     <string name="lvl0drops">En este nivel no hay objetos</string>
+    <string name="itemsCrafted">Has fabricado %1$d objetos</string>
+    <string name="itemCrafted">Has fabricado un objeto</string>
 </resources>

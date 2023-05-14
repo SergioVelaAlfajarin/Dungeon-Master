@@ -35,7 +35,7 @@
     <string name="vit">Vitalidad: %1$d</string>
     <string name="atk">Ataque: %1$d</string>
     <string name="def">Defensa: %1$d</string>
-    <string name="qntyOnInv">Got: x%1$d</string>
+    <string name="qntyOnInv">Tienes: x%1$d</string>
     <string name="invTitle">Inventario de %1$s</string>
     <string name="craftable">Fabricable</string>
     <string name="needed">Necesitas:</string>
@@ -65,4 +65,6 @@
     <string name="statsInfo">Estadisticas</string>
     <string name="leaveGame">Abandonar</string>
     <string name="lvl0drops">En este nivel no hay objetos</string>
+    <string name="itemsCrafted">Has fabricado %1$d objetos</string>
+    <string name="itemCrafted">Has fabricado un objeto</string>
 </resources>

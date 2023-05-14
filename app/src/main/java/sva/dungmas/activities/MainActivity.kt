@@ -56,8 +56,6 @@ class MainActivity : AppCompatActivity() {
                 //recreate() //TODO does not work (used to change lang)
                 //finish()
                 //startActivity(intent)
-
-
             }
         }
     }

@@ -13,7 +13,7 @@ import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
 import sva.dungmas.game.entities.Inventory
 
-class InventoryActivity : AppCompatActivity() { //TODO TEST
+class InventoryActivity : AppCompatActivity() {
     private lateinit var playerInv: Inventory
     private lateinit var recyclerAdapter: InventoryRecyclerAdapter
     private lateinit var recyclerView: RecyclerView

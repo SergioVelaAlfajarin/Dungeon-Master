@@ -6,8 +6,11 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import sva.dungmas.R
 import sva.dungmas.game.Game
+import sva.dungmas.game.entities.Inventory
+import sva.dungmas.game.items.Item
 import sva.dungmas.recyclers.CraftRecyclerAdapter
 import sva.dungmas.recyclers.RecipeRecyclerAdapter
 
@@ -37,20 +40,45 @@ class CraftActivity : AppCompatActivity() {
     }
 
     private fun btnCraftMaxClick(view: View) {
-        TODO("Not yet implemented")
+        val item = recyclerAdapter.selectedItem
+        val inv = Game.player.inventory
+        var counter = 0
+        while(inv.checkIfItemIsCraftable(item)){
+            craftItem(item, inv)
+            counter++
+        }
+        recyclerAdapter.notifyDataSetChanged()
+        updateRecipeRecycler()
+        updateCraftButton(false)
+
+        Snackbar.make(
+            findViewById(R.id.craftLayout),
+            getString(R.string.itemsCrafted, counter),
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 
     private fun btnCraftClick(v: View) {
         //only clickable if enough items in inventory
         val item = recyclerAdapter.selectedItem
         val inv = Game.player.inventory
+        craftItem(item, inv)
+        recyclerAdapter.notifyDataSetChanged()
+        updateRecipeRecycler()
+        updateCraftButton(inv.checkIfItemIsCraftable(item))
+
+        Snackbar.make(
+            findViewById(R.id.craftLayout),
+            R.string.itemCrafted,
+            Snackbar.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun craftItem(item: Item, inv: Inventory) {
         item.recipe.forEach { (key, value) ->
             inv.remove(key, value)
         }
         inv.add(item)
-        recyclerAdapter.notifyDataSetChanged()
-        updateRecipeRecycler()
-        updateCraftButton(inv.checkIfItemIsCraftable(item))
     }
 
     fun updateRecipeRecycler() {
@@ -60,5 +88,6 @@ class CraftActivity : AppCompatActivity() {
 
     fun updateCraftButton(craftable: Boolean) {
         btnCraft.isEnabled = craftable
+        btnCraftMax.isEnabled = craftable
     }
 }
