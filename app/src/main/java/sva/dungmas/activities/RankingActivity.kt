@@ -11,6 +11,7 @@ import sva.dungmas.R
 import sva.dungmas.dialogs.ConfirmCallback
 import sva.dungmas.dialogs.ConfirmDialog
 import sva.dungmas.enums.Codes
+import sva.dungmas.game.Game
 import sva.dungmas.recyclers.RankingRecyclerAdapter
 
 class RankingActivity : AppCompatActivity() {
@@ -21,20 +22,7 @@ class RankingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ranking)
 
-        val list = hashMapOf(
-            0 to "YOOOO",
-            1 to "-",
-            2 to "-",
-            3 to "-",
-            4 to "-",
-            5 to "-",
-            6 to "-",
-            7 to "-",
-            8 to "-",
-            9 to "-",
-        )
-
-        recyclerAdapter = RankingRecyclerAdapter(list)
+        recyclerAdapter = RankingRecyclerAdapter()
         recyclerView = findViewById(R.id.recyclerRankView)
 
         recyclerView.adapter = recyclerAdapter
@@ -56,8 +44,8 @@ class RankingActivity : AppCompatActivity() {
             getString(R.string.acceptOp),
             object : ConfirmCallback {
                 override fun dialogOk() {
-                    //TODO delete also on database
-                    recyclerAdapter.resetList()
+                    Game.bdManager.resetRanking()
+                    recyclerAdapter.notifyDataSetChanged()
 
                     Snackbar.make(
                         findViewById(R.id.rankingLayout),
@@ -72,8 +60,4 @@ class RankingActivity : AppCompatActivity() {
         setResult(Codes.OK.code)
         super.finish()
     }
-
-    //-----------------------------
-
-
 }

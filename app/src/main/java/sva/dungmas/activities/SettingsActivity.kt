@@ -40,10 +40,6 @@ class SettingsActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_dropdown_item,
             arrayOf(getString(R.string.spa), getString(R.string.eng))
         )
-        /*spinner.selectedItem = when(Game.lang){
-            "en" -> getString(R.string.eng)
-            else -> getString(R.string.spa)
-        }*/
     }
 
     private fun setButtonsEvents() {
@@ -64,7 +60,7 @@ class SettingsActivity : AppCompatActivity() {
         Game.lang = when (spinner.selectedItem) {
             getString(R.string.spa) -> "es"
             getString(R.string.eng) -> "en"
-            else -> ""
+            else -> "es"
         }
         setResult(Codes.UPDATE_SETTINGS.code)
         finish()

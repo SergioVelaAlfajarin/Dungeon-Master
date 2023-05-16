@@ -25,9 +25,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Game.init(
-            applicationContext.getSharedPreferences("gamePrefs", Context.MODE_PRIVATE)
-        )
+        Game.init(applicationContext
+            .getSharedPreferences("gamePrefs", Context.MODE_PRIVATE))
         setButtonsEvents()
         updateSettings()
 
@@ -51,11 +50,7 @@ class MainActivity : AppCompatActivity() {
                     R.string.settingsSaved,
                     Snackbar.LENGTH_SHORT
                 ).show()
-
-                updateSettings()
-                //recreate() //TODO does not work (used to change lang)
-                //finish()
-                //startActivity(intent)
+                recreate()
             }
         }
     }

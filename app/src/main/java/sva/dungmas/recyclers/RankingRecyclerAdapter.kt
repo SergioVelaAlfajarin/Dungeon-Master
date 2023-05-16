@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import sva.dungmas.R
+import sva.dungmas.bbdd.BDManager
+import sva.dungmas.game.Game
 
-class RankingRecyclerAdapter(
-    private var ranking: HashMap<Int, String>
-): RecyclerView.Adapter<RankingViewHolder>(){
+class RankingRecyclerAdapter: RecyclerView.Adapter<RankingViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankingViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.rank_list_item, parent, false)
@@ -17,33 +17,24 @@ class RankingRecyclerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return ranking.size
+        return 10
     }
 
     override fun onBindViewHolder(holder: RankingViewHolder, position: Int) {
-        holder.iLblRankPos.text = "${position + 1}"
-        holder.iLblRankName.text = ranking[position]
-    }
-
-    fun resetList(){
-        ranking = hashMapOf(
-            0  to "-",
-            1  to "-",
-            2  to "-",
-            3  to "-",
-            4  to "-",
-            5  to "-",
-            6  to "-",
-            7  to "-",
-            8  to "-",
-            9 to "-",
-        )
-
-        notifyDataSetChanged()
+        holder.iLblRankPos.text = (position + 1).toString()
+        val rank: RankingEntry = Game.bdManager.getRankingPos(position)
+        holder.iLblRankName.text = rank.name
+        holder.iLblRankPts.text = rank.pts.toString()
     }
 }
 
 class RankingViewHolder(v: View) : RecyclerView.ViewHolder(v){
     val iLblRankPos: TextView = v.findViewById(R.id.lblRankPos)
-    val iLblRankName: TextView = v.findViewById(R.id.lblRankName)
+    val iLblRankName: TextView = v.findViewById(R.id.lblRankPts)
+    val iLblRankPts: TextView = v.findViewById(R.id.lblRankPts)
 }
+
+data class RankingEntry(
+    val name: String,
+    val pts: Int
+)
