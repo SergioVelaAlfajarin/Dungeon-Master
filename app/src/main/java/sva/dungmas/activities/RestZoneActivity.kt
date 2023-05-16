@@ -138,7 +138,15 @@ class RestZoneActivity : AppCompatActivity() {
                     .show(supportFragmentManager, ":::")
             }
             R.id.menuStatsInfo -> {
-                //CustomDialog()
+                val view = layoutInflater.inflate(R.layout.stats_dialog, null)
+                val lbl1 = view.findViewById<TextView>(R.id.lblStatsPlayer)
+                val lbl2 = view.findViewById<TextView>(R.id.lblStatsEnemy)
+
+                lbl1.text = Game.player.toString()
+                lbl2.text = Game.defaultEnemyStats.toString()
+
+                CustomDialog(getString(R.string.statsInfo), view)
+                    .show(supportFragmentManager, ":::")
             }
             R.id.menuExitGame -> {
                 confirmExit()

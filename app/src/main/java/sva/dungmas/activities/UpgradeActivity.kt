@@ -17,6 +17,8 @@ class UpgradeActivity : AppCompatActivity() {
     private lateinit var playerArmor: Armor
     private lateinit var imgArmorIcon: ImageView
     private lateinit var lblArmorLevel: TextView
+    private lateinit var lblStats: TextView
+    private lateinit var lblStatsIncrease: TextView
     private lateinit var recyclerUpgradeArmor: RecyclerView
     private lateinit var btnUpgrade: Button
 
@@ -28,7 +30,15 @@ class UpgradeActivity : AppCompatActivity() {
         imgArmorIcon = findViewById(R.id.imgArmorIcon)
         lblArmorLevel = findViewById(R.id.lblArmorLvl)
         recyclerUpgradeArmor = findViewById(R.id.recyclerUpgradeArmor)
-        btnUpgrade = findViewById<Button>(R.id.btnUpgradeArmor)
+        btnUpgrade = findViewById(R.id.btnUpgradeArmor)
+
+        lblStats = findViewById(R.id.lblStats)
+        lblStats.text = playerArmor.toString()
+
+        lblStatsIncrease = findViewById(R.id.lblStatsIncrease)
+        val text =  "+${playerArmor.statIncrease}\n".repeat(3)
+        lblStatsIncrease.text = text
+
 
         recyclerUpgradeArmor.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -45,6 +55,7 @@ class UpgradeActivity : AppCompatActivity() {
 
     private fun updateLabel() {
         lblArmorLevel.text = getString(R.string.level, playerArmor.level)
+        lblStats.text = playerArmor.toString()
     }
 
     private fun updateButton() {

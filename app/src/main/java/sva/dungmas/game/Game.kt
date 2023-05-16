@@ -12,6 +12,7 @@ import sva.dungmas.game.entities.Stats
 import sva.dungmas.game.items.Item
 import sva.dungmas.game.items.ItemPart
 import sva.dungmas.game.items.Storable
+import kotlin.math.min
 
 object Game {
     lateinit var player: Player
@@ -22,14 +23,11 @@ object Game {
 
     fun init(preferences: SharedPreferences){
         this.preferences = preferences
-        defaultEnemyStats = Stats(1,1,1)
-        bdManager = BDManager()
-        genEnemies()
-        level = 0
+        reset()
     }
 
     fun reset() {
-        defaultEnemyStats = Stats(1,1,1)
+        defaultEnemyStats = Stats(10,1,1)
         bdManager = BDManager()
         genEnemies()
         level = 0
@@ -58,25 +56,19 @@ object Game {
     fun getLevelDrop(): LinkedHashMap<ItemPart, Int> {
         val items: List<ItemPart> = bdManager.getItemsPart()
         val hashMap: LinkedHashMap<ItemPart, Int> = linkedMapOf()
-        val qnty = (level.coerceAtLeast(1) * (if(!easyMode) 1.5 else 2.5)).toInt()
+        val qnty = min((level.coerceAtLeast(1) * (if(!easyMode) 1.5 else 2.5)).toInt(), 99)
         items.forEach{
             hashMap[it] = qnty
         }
-        Log.d(":::", "getLevelDrop: $hashMap")
+        Log.d(":::", "getLevelDrop: $hashMap, level: $level")
         return hashMap
     }
 
     fun getNextLevelDrop(): LinkedHashMap<ItemPart, Int> {
         level++
-        val items: List<ItemPart> = bdManager.getItemsPart()
-        val hashMap: LinkedHashMap<ItemPart, Int> = linkedMapOf()
-        val qnty = (level * (if(!easyMode) 1.5 else 2.5)).toInt()
-        items.forEach{
-            hashMap[it] = qnty
-        }
-        Log.d(":::", "getNextLevelDrop: $hashMap")
+        val hashmap = getLevelDrop()
         level--
-        return hashMap
+        return hashmap
     }
 
     var easyMode: Boolean

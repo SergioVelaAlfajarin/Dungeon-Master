@@ -67,4 +67,6 @@
     <string name="lvl0drops">There are no items on this level</string>
     <string name="itemsCrafted">You crafted %1$d items</string>
     <string name="itemCrafted">You crafted an item</string>
+    <string name="player">Player</string>
+    <string name="enemy">Enemy</string>
 </resources>

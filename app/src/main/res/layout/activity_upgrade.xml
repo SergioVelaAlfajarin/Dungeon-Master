@@ -6,25 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".activities.UpgradeActivity">
 
+    <TextView
+        android:id="@+id/lblStatsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/statsInfo"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgArmorIcon" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerUpgradeArmor"
-        android:layout_width="308dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="261dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/btnUpgradeArmor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/lblRequired"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/needed"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerUpgradeArmor"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnUpgradeArmor"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -44,13 +57,13 @@
         android:id="@+id/btnUpgradeArmor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="32dp"
         android:width="130dp"
         android:height="70dp"
         android:text="@string/upgrade"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -62,5 +75,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblArmorLvl"
         app:srcCompat="@drawable/iron1" />
+
+    <TextView
+        android:id="@+id/lblStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="28dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblStatsTitle" />
+
+    <TextView
+        android:id="@+id/lblStatsIncrease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="112dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblStatsTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

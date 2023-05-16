@@ -12,6 +12,10 @@ class Player(
     val armor = Armor() //estas estadisticas seran las que iran cambiando. las default no
     override var alive = true
 
+    override fun toString(): String {
+        return "Vit: $vit\nAtk: $atk\nDef: $def"
+    }
+
     override val vit: Int
         get(){
             return job.stats.vit + armor.vit

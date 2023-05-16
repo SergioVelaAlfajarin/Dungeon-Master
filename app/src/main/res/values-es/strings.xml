@@ -67,4 +67,6 @@
     <string name="lvl0drops">En este nivel no hay objetos</string>
     <string name="itemsCrafted">Has fabricado %1$d objetos</string>
     <string name="itemCrafted">Has fabricado un objeto</string>
+    <string name="player">Jugador</string>
+    <string name="enemy">Enemigo</string>
 </resources>

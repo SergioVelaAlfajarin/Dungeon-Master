@@ -7,15 +7,9 @@ import sva.dungmas.game.items.Storable
 
 class Armor {
     fun increaseLevel() {
-        if(Game.easyMode){
-            stats.vit += 10
-            stats.atk += 10
-            stats.def += 10
-        }else{
-            stats.vit += 7
-            stats.atk += 7
-            stats.def += 7
-        }
+        stats.vit += statIncrease
+        stats.atk += statIncrease
+        stats.def += statIncrease
         level++
     }
 
@@ -40,10 +34,20 @@ class Armor {
         )
     }
 
-    private val stats = Stats(1,1,1)
+    override fun toString(): String {
+        return stats.toString()
+    }
+
+    private val stats = Stats(10,1,1)
     var level = 1
         private set
 
+
+    val statIncrease: Int //TODO VARIAR STATS por clase y stat
+        get(){
+            return if(Game.easyMode) 10
+            else 7
+        }
     val icon: Int
         get(){
             return when(level){
@@ -73,4 +77,6 @@ class Armor {
         set(value){
             stats.def = value
         }
+
+
 }
