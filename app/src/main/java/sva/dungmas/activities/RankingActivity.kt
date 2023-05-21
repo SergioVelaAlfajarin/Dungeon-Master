@@ -22,7 +22,7 @@ class RankingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ranking)
 
-        recyclerAdapter = RankingRecyclerAdapter()
+        recyclerAdapter = RankingRecyclerAdapter(this)
         recyclerView = findViewById(R.id.recyclerRankView)
 
         recyclerView.adapter = recyclerAdapter
@@ -44,7 +44,7 @@ class RankingActivity : AppCompatActivity() {
             getString(R.string.acceptOp),
             object : ConfirmCallback {
                 override fun dialogOk() {
-                    Game.bdManager.resetRanking()
+                    Game.bdManager.resetRanking(applicationContext)
                     recyclerAdapter.notifyDataSetChanged()
 
                     Snackbar.make(

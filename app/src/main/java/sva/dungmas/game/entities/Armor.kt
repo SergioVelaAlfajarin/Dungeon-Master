@@ -1,5 +1,6 @@
 package sva.dungmas.game.entities
 
+import android.content.Context
 import sva.dungmas.R
 import sva.dungmas.bbdd.BDManager
 import sva.dungmas.game.Game
@@ -13,9 +14,9 @@ class Armor {
         level++
     }
 
-    fun canBeUpgraded():Boolean{
+    fun canBeUpgraded(context: Context):Boolean{
         var upgradable = true
-        getRequirementsForNextLevel().forEach{(key, value) ->
+        getRequirementsForNextLevel(context).forEach{(key, value) ->
             val enough = Game.player.inventory.hasEnoughOf(key, value)
             if(!enough){
                 upgradable = false
@@ -24,13 +25,13 @@ class Armor {
         return upgradable
     }
 
-    fun getRequirementsForNextLevel(): LinkedHashMap<Storable, Int>{
+    fun getRequirementsForNextLevel(context: Context): LinkedHashMap<Storable, Int>{
         val qnty = (level * (if(Game.easyMode) 1.5 else 2.5)).toInt()
         return linkedMapOf(
-            Game.bdManager.getCraftableItems(1) to qnty,
-            Game.bdManager.getCraftableItems(2) to qnty,
-            Game.bdManager.getCraftableItems(3) to qnty,
-            Game.bdManager.getCraftableItems(4) to qnty,
+            Game.bdManager.getCraftableItems(context,1) to qnty,
+            Game.bdManager.getCraftableItems(context,2) to qnty,
+            Game.bdManager.getCraftableItems(context,3) to qnty,
+            Game.bdManager.getCraftableItems(context,4) to qnty,
         )
     }
 

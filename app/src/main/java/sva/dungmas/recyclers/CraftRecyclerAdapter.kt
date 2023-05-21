@@ -16,7 +16,7 @@ import sva.dungmas.game.items.Item
 
 class CraftRecyclerAdapter(val context: Context): RecyclerView.Adapter<CraftViewHolder>(){
 
-    private val item = Game.bdManager.getCraftableItems()
+    private val item = Game.bdManager.getCraftableItems(context)
     private var selectedPos: Int = -1
 
     val selectedItem: Item

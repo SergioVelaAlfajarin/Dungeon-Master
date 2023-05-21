@@ -65,7 +65,7 @@ class RestZoneActivity : AppCompatActivity() {
 
             Codes.BATTLE_WON.code -> {
                 btnRepeatLevel.isEnabled = true
-                val itemsDropped: LinkedHashMap<ItemPart, Int> = Game.getLevelDrop()
+                val itemsDropped: LinkedHashMap<ItemPart, Int> = Game.getLevelDrop(this)
 
                 Game.player.inventory.addItemsDropped(itemsDropped)
 

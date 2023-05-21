@@ -29,12 +29,6 @@ class Player(
             return job.stats.def + armor.def
         }
 
-    fun addItemsToInventory(ip: ArrayList<Storable>){
-        ip.forEach {
-            inventory.add(it)
-        }
-    }
-
     override fun attack(other: Entity) {
         TODO("Not yet implemented")
     }
