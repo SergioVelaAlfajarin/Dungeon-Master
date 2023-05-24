@@ -54,7 +54,7 @@ object Game {
     }
 
     fun getLevelDrop(context: Context): LinkedHashMap<ItemPart, Int> {
-        val items: List<ItemPart> = bdManager.getItemsPart(context)
+        val items: List<ItemPart> = bdManager.getItemsPart()
         val hashMap: LinkedHashMap<ItemPart, Int> = linkedMapOf()
         val qnty = min((level.coerceAtLeast(1) * (if(!easyMode) 1.5 else 2.5)).toInt(), 99)
         items.forEach{

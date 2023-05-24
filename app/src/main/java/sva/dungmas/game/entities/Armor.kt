@@ -28,10 +28,10 @@ class Armor {
     fun getRequirementsForNextLevel(context: Context): LinkedHashMap<Storable, Int>{
         val qnty = (level * (if(Game.easyMode) 1.5 else 2.5)).toInt()
         return linkedMapOf(
-            Game.bdManager.getCraftableItems(context,1) to qnty,
-            Game.bdManager.getCraftableItems(context,2) to qnty,
-            Game.bdManager.getCraftableItems(context,3) to qnty,
-            Game.bdManager.getCraftableItems(context,4) to qnty,
+            Game.bdManager.getCraftableItems(1) to qnty,
+            Game.bdManager.getCraftableItems(2) to qnty,
+            Game.bdManager.getCraftableItems(3) to qnty,
+            Game.bdManager.getCraftableItems(4) to qnty,
         )
     }
 
