@@ -21,14 +21,14 @@ object Game {
     lateinit var defaultEnemyStats: Stats
     private lateinit var preferences: SharedPreferences
 
-    fun init(preferences: SharedPreferences){
-        this.preferences = preferences
+    fun init(context: Context){
+        this.preferences = context.getSharedPreferences("gamePrefs", Context.MODE_PRIVATE)
+        bdManager = BDManager(context)
         reset()
     }
 
     fun reset() {
         defaultEnemyStats = Stats(10,1,1)
-        bdManager = BDManager()
         genEnemies()
         level = 0
     }

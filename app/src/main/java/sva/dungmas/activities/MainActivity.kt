@@ -25,10 +25,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Game.init(applicationContext
-            .getSharedPreferences("gamePrefs", Context.MODE_PRIVATE))
+        Game.init(applicationContext)
         setButtonsEvents()
         updateSettings()
+
+        applicationContext
 
         launcher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),

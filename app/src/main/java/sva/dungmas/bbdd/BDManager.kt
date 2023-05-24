@@ -8,21 +8,8 @@ import sva.dungmas.recyclers.RankingEntry
 
 private const val VERSION = 1
 
-class BDManager {
-    private var helper: BDHelper? = null
-
-    private fun connectTo(context: Context?, name: String){
-        helper = BDHelper(
-            context,
-            name,
-            null,
-            VERSION
-        )
-    }
-
-    private fun disconnet(){
-        helper = null
-    }
+class BDManager(context: Context) {
+    private val bdHelper = BDHelper(context)
 
     fun getCraftableItems(context: Context): List<Item> {
         return listOf(
