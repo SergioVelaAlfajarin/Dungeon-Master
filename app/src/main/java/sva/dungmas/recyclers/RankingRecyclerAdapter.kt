@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import sva.dungmas.R
-import sva.dungmas.bbdd.BDManager
 import sva.dungmas.game.Game
 
 class RankingRecyclerAdapter(val context: Context): RecyclerView.Adapter<RankingViewHolder>(){

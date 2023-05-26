@@ -1,22 +1,32 @@
 package sva.dungmas.game.entities
 
-import android.content.Context
 import sva.dungmas.R
-import sva.dungmas.bbdd.BDManager
 import sva.dungmas.game.Game
 import sva.dungmas.game.items.Storable
 
 class Armor {
     fun increaseLevel() {
-        stats.vit += statIncrease
-        stats.atk += statIncrease
-        stats.def += statIncrease
+        stats.vit += if(Game.easyMode){
+            120 - (Game.level * 2).coerceAtMost(30)
+        } else{
+            70 - (Game.level * 2).coerceAtMost(20)
+        }
+        stats.atk += if(Game.easyMode){
+            30 - (Game.level / 2).coerceAtMost(5)
+        } else{
+            20 - (Game.level / 2).coerceAtMost(10)
+        }
+        stats.def += if(Game.easyMode){
+            30 - (Game.level / 2).coerceAtMost(5)
+        } else{
+            20 - (Game.level / 2).coerceAtMost(10)
+        }
         level++
     }
 
-    fun canBeUpgraded(context: Context):Boolean{
+    fun canBeUpgraded():Boolean{
         var upgradable = true
-        getRequirementsForNextLevel(context).forEach{(key, value) ->
+        getRequirementsForNextLevel().forEach{(key, value) ->
             val enough = Game.player.inventory.hasEnoughOf(key, value)
             if(!enough){
                 upgradable = false
@@ -25,7 +35,7 @@ class Armor {
         return upgradable
     }
 
-    fun getRequirementsForNextLevel(context: Context): LinkedHashMap<Storable, Int>{
+    fun getRequirementsForNextLevel(): LinkedHashMap<Storable, Int>{
         val qnty = (level * (if(Game.easyMode) 1.5 else 2.5)).toInt()
         return linkedMapOf(
             Game.bdManager.getCraftableItems(1) to qnty,
@@ -40,15 +50,9 @@ class Armor {
     }
 
     private val stats = Stats(10,1,1)
+
     var level = 1
         private set
-
-
-    val statIncrease: Int //TODO VARIAR STATS por clase y stat
-        get(){
-            return if(Game.easyMode) 10
-            else 7
-        }
     val icon: Int
         get(){
             return when(level){

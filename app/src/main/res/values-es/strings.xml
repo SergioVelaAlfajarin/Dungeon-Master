@@ -69,4 +69,5 @@
     <string name="itemCrafted">Has fabricado un objeto</string>
     <string name="player">Jugador</string>
     <string name="enemy">Enemigo</string>
+    <string name="statsInfo2">Estadisticas Armadura</string>
 </resources>

@@ -4,17 +4,15 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.core.content.edit
-import sva.dungmas.R
 import sva.dungmas.bbdd.BDManager
 import sva.dungmas.game.entities.Enemy
 import sva.dungmas.game.entities.Player
 import sva.dungmas.game.entities.Stats
-import sva.dungmas.game.items.Item
 import sva.dungmas.game.items.ItemPart
-import sva.dungmas.game.items.Storable
 import kotlin.math.min
 
 object Game {
+    private var points = 0
     lateinit var player: Player
     lateinit var bdManager: BDManager
     lateinit var enemies: ArrayList<Enemy>
@@ -28,9 +26,10 @@ object Game {
     }
 
     fun reset() {
-        defaultEnemyStats = Stats(10,1,1)
+        defaultEnemyStats = Stats(40,2,2)
         genEnemies()
         level = 0
+        points = 0
     }
 
     fun increaseLevel(){
@@ -39,10 +38,14 @@ object Game {
         genEnemies()
     }
 
+    fun addPoints(pts: Int){
+        points += pts
+    }
+
     private fun increaseDefaultStats(){
         defaultEnemyStats.vit += (level * 1.5).toInt()
-        defaultEnemyStats.atk += (level * 1.5).toInt()
-        defaultEnemyStats.def += (level * 1.5).toInt()
+        defaultEnemyStats.atk += (level * 1.1).toInt()
+        defaultEnemyStats.def += (level * 1.1).toInt()
     }
 
     private fun genEnemies() {
@@ -53,22 +56,26 @@ object Game {
         }
     }
 
-    fun getLevelDrop(context: Context): LinkedHashMap<ItemPart, Int> {
+    fun getLevelDrop(): LinkedHashMap<ItemPart, Int> {
         val items: List<ItemPart> = bdManager.getItemsPart()
         val hashMap: LinkedHashMap<ItemPart, Int> = linkedMapOf()
-        val qnty = min((level.coerceAtLeast(1) * (if(!easyMode) 1.5 else 2.5)).toInt(), 99)
+        val qntity = min((level.coerceAtLeast(1) * (if(!easyMode) 1.5 else 2.5)).toInt(), 99)
         items.forEach{
-            hashMap[it] = qnty
+            hashMap[it] = qntity
         }
         Log.d(":::", "getLevelDrop: $hashMap, level: $level")
         return hashMap
     }
 
-    fun getNextLevelDrop(context: Context): LinkedHashMap<ItemPart, Int> {
+    fun getNextLevelDrop(): LinkedHashMap<ItemPart, Int> {
         level++
-        val hashmap = getLevelDrop(context)
+        val hashmap = getLevelDrop()
         level--
         return hashmap
+    }
+
+    fun saveRanking() {
+        Log.d(":::", "saveRanking: ${this.points}")
     }
 
     var easyMode: Boolean

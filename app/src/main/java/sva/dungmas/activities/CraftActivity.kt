@@ -79,6 +79,8 @@ class CraftActivity : AppCompatActivity() {
             inv.remove(key, value)
         }
         inv.add(item)
+
+        Game.addPoints(10)
     }
 
     fun updateRecipeRecycler() {

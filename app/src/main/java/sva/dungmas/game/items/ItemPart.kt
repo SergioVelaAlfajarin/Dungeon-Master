@@ -1,7 +1,5 @@
 package sva.dungmas.game.items
 
-import sva.dungmas.R
-
 data class ItemPart(
     val id: Int,
     override val nameResId: Int,

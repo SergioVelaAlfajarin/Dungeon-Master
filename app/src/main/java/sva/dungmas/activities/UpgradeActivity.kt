@@ -36,14 +36,18 @@ class UpgradeActivity : AppCompatActivity() {
         lblStats.text = playerArmor.toString()
 
         lblStatsIncrease = findViewById(R.id.lblStatsIncrease)
-        val text =  "+${playerArmor.statIncrease}\n".repeat(3)
+        val text =  """
+            +${if(Game.easyMode) 100 else 75}
+            +${if(Game.easyMode) 10 else 7}
+            +${if(Game.easyMode) 10 else 7}
+        """.trimIndent()
         lblStatsIncrease.text = text
 
 
         recyclerUpgradeArmor.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerUpgradeArmor.adapter =
-            RecipeRecyclerAdapter(playerArmor.getRequirementsForNextLevel(this))
+            RecipeRecyclerAdapter(playerArmor.getRequirementsForNextLevel())
         btnUpgrade.setOnClickListener(this::btnUpgradeArmorClick)
 
         updateLabel()
@@ -59,12 +63,11 @@ class UpgradeActivity : AppCompatActivity() {
     }
 
     private fun updateButton() {
-        btnUpgrade.isEnabled = playerArmor.canBeUpgraded(this)
+        btnUpgrade.isEnabled = playerArmor.canBeUpgraded()
     }
 
     private fun btnUpgradeArmorClick(v: View) {
-        //TODO CREAR LABEL QUE MUESTRE STATS ACTUALES
-        val requirements = playerArmor.getRequirementsForNextLevel(this)
+        val requirements = playerArmor.getRequirementsForNextLevel()
         requirements.forEach { (key, value) ->
             Game.player.inventory.remove(key, value)
         }
@@ -73,6 +76,7 @@ class UpgradeActivity : AppCompatActivity() {
         updateLabel()
         updateButton()
         recyclerUpgradeArmor.adapter =
-            RecipeRecyclerAdapter(playerArmor.getRequirementsForNextLevel(this))
+            RecipeRecyclerAdapter(playerArmor.getRequirementsForNextLevel())
+        Game.addPoints(50)
     }
 }

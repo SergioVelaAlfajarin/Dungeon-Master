@@ -1,15 +1,11 @@
 package sva.dungmas.game.entities
 
-import android.util.Log
-import sva.dungmas.R
 import sva.dungmas.game.items.Item
 import sva.dungmas.game.items.ItemPart
 import sva.dungmas.game.items.Storable
-import kotlin.streams.toList
 
 
 class Inventory {
-    //TODO tests
     private val inventory: LinkedHashMap<Storable, Int> = linkedMapOf()
 
     val isEmpty: Boolean

@@ -1,6 +1,5 @@
 package sva.dungmas.activities
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,9 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
 import sva.dungmas.R
-import sva.dungmas.bbdd.BDContract
 import sva.dungmas.bbdd.BDHelper
-import sva.dungmas.bbdd.BDManager
 import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game

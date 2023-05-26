@@ -5,7 +5,6 @@ import sva.dungmas.game.items.Item
 import sva.dungmas.game.items.ItemPart
 import sva.dungmas.game.items.Storable
 import sva.dungmas.recyclers.RankingEntry
-import java.util.HashMap
 
 class BDManager(context: Context) {
 
@@ -57,7 +56,7 @@ class BDManager(context: Context) {
     private fun getRecipe(itemId: Int): HashMap<Storable, Int> {
         val hash = hashMapOf<Storable, Int>()
         val cursor = helper.readableDatabase.rawQuery(
-            "SELECT ${BDContract.Recipes.itempart_id}, ${BDContract.Recipes.quantity} FROM ${BDContract.Recipes.tableName} WHERE ${BDContract.Recipes.itempart_id} = $itemId", null
+            "SELECT ${BDContract.Recipes.itempart_id}, ${BDContract.Recipes.quantity} FROM ${BDContract.Recipes.tableName} WHERE ${BDContract.Recipes.item_id} = $itemId", null
         )
         if (cursor.moveToFirst()) {
             do {

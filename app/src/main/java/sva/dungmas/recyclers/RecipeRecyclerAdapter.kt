@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import sva.dungmas.R
 import sva.dungmas.game.Game
-import sva.dungmas.game.items.Item
 import sva.dungmas.game.items.Storable
 import kotlin.streams.toList
 

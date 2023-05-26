@@ -6,8 +6,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.DialogFragment
-import sva.dungmas.R
-import sva.dungmas.game.Game
 
 class CustomDialog(
     private val title: String,

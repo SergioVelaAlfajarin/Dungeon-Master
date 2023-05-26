@@ -69,4 +69,5 @@
     <string name="itemCrafted">You crafted an item</string>
     <string name="player">Player</string>
     <string name="enemy">Enemy</string>
+    <string name="statsInfo2">Armor Stats</string>
 </resources>

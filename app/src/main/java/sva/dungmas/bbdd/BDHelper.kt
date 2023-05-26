@@ -1,13 +1,8 @@
 package sva.dungmas.bbdd
 
 import android.content.Context
-import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.provider.BaseColumns
-import android.util.Log
-import sva.dungmas.R
-
 
 
 class BDHelper(
@@ -15,7 +10,7 @@ class BDHelper(
 ): SQLiteOpenHelper(context, name, null, version) {
     companion object{
         const val name = "DungMas.db"
-        const val version = 1
+        const val version = 2
     }
 
     override fun onCreate(db: SQLiteDatabase) {

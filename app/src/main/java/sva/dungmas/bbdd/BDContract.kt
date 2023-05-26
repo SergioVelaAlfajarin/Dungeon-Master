@@ -2,7 +2,6 @@ package sva.dungmas.bbdd
 
 import android.provider.BaseColumns
 import sva.dungmas.R
-import sva.dungmas.game.items.ItemPart
 
 object BDContract {
     val creates = arrayListOf(

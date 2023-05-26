@@ -3,7 +3,6 @@ package sva.dungmas.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
-import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -15,7 +14,6 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -62,7 +60,6 @@ class RestZoneActivity : AppCompatActivity() {
                     .show(supportFragmentManager, "info")
                 finish()
             }
-
             Codes.BATTLE_WON.code -> {
                 btnRepeatLevel.isEnabled = true
                 val itemsDropped: LinkedHashMap<ItemPart, Int> = Game.getLevelDrop(this)
@@ -76,6 +73,8 @@ class RestZoneActivity : AppCompatActivity() {
                 ).show()
 
                 updateLblLevel()
+
+                Game.addPoints(100)
             }
         }
     }
@@ -145,7 +144,7 @@ class RestZoneActivity : AppCompatActivity() {
                 lbl1.text = Game.player.toString()
                 lbl2.text = Game.defaultEnemyStats.toString()
 
-                CustomDialog(getString(R.string.statsInfo), view)
+                CustomDialog(getString(R.string.statsInfo) + " " + getString(R.string.level, Game.level), view)
                     .show(supportFragmentManager, ":::")
             }
             R.id.menuExitGame -> {
@@ -162,6 +161,7 @@ class RestZoneActivity : AppCompatActivity() {
         getString(R.string.exitOp),
         object : ConfirmCallback {
             override fun dialogOk() {
+                Game.saveRanking()
                 finish()
                 Game.reset()
             }
