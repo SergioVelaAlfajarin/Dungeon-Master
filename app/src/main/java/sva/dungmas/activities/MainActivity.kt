@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
 import sva.dungmas.R
+import sva.dungmas.bbdd.BDContract
+import sva.dungmas.bbdd.BDHelper
+import sva.dungmas.bbdd.BDManager
 import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
@@ -20,7 +23,7 @@ import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private lateinit var launcher: ActivityResultLauncher<Intent>
-
+ private lateinit var test: BDHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,8 +31,6 @@ class MainActivity : AppCompatActivity() {
         Game.init(applicationContext)
         setButtonsEvents()
         updateSettings()
-
-        applicationContext
 
         launcher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),

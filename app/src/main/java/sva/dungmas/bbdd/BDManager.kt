@@ -1,75 +1,95 @@
 package sva.dungmas.bbdd
 
 import android.content.Context
-import android.database.Cursor
-import android.util.Log
-import sva.dungmas.R
 import sva.dungmas.game.items.Item
 import sva.dungmas.game.items.ItemPart
+import sva.dungmas.game.items.Storable
 import sva.dungmas.recyclers.RankingEntry
-import java.lang.Exception
-
-private const val VERSION = 1
+import java.util.HashMap
 
 class BDManager(context: Context) {
-    private val helper = BDHelper(context)
 
-    fun getCraftableItems(): List<Item> {
-        val items = arrayListOf<Item>()
-        val cursor = helper.readableDatabase.rawQuery(
-            "SELECT * FROM items", null
-        )
-        if (cursor.moveToFirst()) {
-            do {
-                //get info and build item
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        return items.toList()
+    private val helper: BDHelper
+    private val itemPart: ArrayList<ItemPart> = arrayListOf()
+    private val item: ArrayList<Item> = arrayListOf()
+
+    init{
+        helper = BDHelper(context)
+        fillItemPart()
+        fillItem()
     }
 
 
-    fun getCraftableItems(id: Int): Item{
+
+    private fun fillItemPart(){
         val cursor = helper.readableDatabase.rawQuery(
-            "SELECT * FROM items WHERE item_id = $id", null
+            "SELECT * FROM ${BDContract.Itempart.tableName}", null
         )
-        if (cursor.count == 1){
-            if (cursor.moveToFirst()) {
-                cursor.close()
-                return Item(1,1,1, hashMapOf())
-            }
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(0)
+                val name = cursor.getInt(1)
+                val icon = cursor.getInt(2)
+                val ip = ItemPart(id, name, icon)
+                itemPart.add(ip)
+            } while (cursor.moveToNext())
         }
         cursor.close()
-        throw Exception("Fatal error")
+    }
+
+    private fun fillItem(){
+        val cursor = helper.readableDatabase.rawQuery(
+            "SELECT * FROM ${BDContract.Item.tableName}", null
+        )
+        if (cursor.moveToFirst()) {
+            do {
+                val itemId = cursor.getInt(0)
+                val name = cursor.getInt(1)
+                val icon = cursor.getInt(2)
+                val recipe = getRecipe(itemId)
+                val it = Item(itemId,name,icon,recipe)
+                item.add(it)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+    }
+
+    private fun getRecipe(itemId: Int): HashMap<Storable, Int> {
+        val hash = hashMapOf<Storable, Int>()
+        val cursor = helper.readableDatabase.rawQuery(
+            "SELECT ${BDContract.Recipes.itempart_id}, ${BDContract.Recipes.quantity} FROM ${BDContract.Recipes.tableName} WHERE ${BDContract.Recipes.itempart_id} = $itemId", null
+        )
+        if (cursor.moveToFirst()) {
+            do {
+                val itempartId = cursor.getInt(0)
+                val quantity = cursor.getInt(1)
+                hash[getItemsPart(itempartId)] = quantity
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return hash
+    }
+
+    fun getCraftableItems(): List<Item> {
+        return item.toList()
+    }
+
+    fun getCraftableItems(id: Int): Item{
+        return item.stream().filter{
+            it.id == id
+        }.findAny().get()
     }
 
     fun getItemsPart(): List<ItemPart>{
-        val items = arrayListOf<ItemPart>()
-        val cursor = helper.readableDatabase.rawQuery(
-            "SELECT * FROM itemparts", null
-        )
-        if (cursor.moveToFirst()) {
-            do {
-                //get info and build item
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        return items.toList()
+        return itemPart.toList()
     }
 
     fun getItemsPart(id: Int): ItemPart{
-        val cursor = helper.readableDatabase.rawQuery(
-            "SELECT * FROM itemparts WHERE itempart_id = $id", null
-        )
-        if (cursor.count == 1){
-            if (cursor.moveToFirst()) {
-                cursor.close()
-                return ItemPart(1,1,1)
-            }
-        }
-        cursor.close()
-        throw Exception("Fatal error")
+        return itemPart.stream().filter{
+            it.id == id
+        }.findAny().get()
     }
+
 
     fun getRankingPos(context: Context, position: Int): RankingEntry {
         TODO("Not yet implemented")
