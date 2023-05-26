@@ -44,7 +44,7 @@ class RankingActivity : AppCompatActivity() {
             getString(R.string.acceptOp),
             object : ConfirmCallback {
                 override fun dialogOk() {
-                    Game.bdManager.resetRanking(applicationContext)
+                    Game.bdManager.resetRanking()
                     recyclerAdapter.notifyDataSetChanged()
 
                     Snackbar.make(

@@ -75,7 +75,7 @@ object Game {
     }
 
     fun saveRanking() {
-        Log.d(":::", "saveRanking: ${this.points}")
+        bdManager.saveRank(player, points)
     }
 
     var easyMode: Boolean

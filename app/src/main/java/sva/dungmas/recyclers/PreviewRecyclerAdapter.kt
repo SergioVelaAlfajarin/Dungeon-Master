@@ -11,7 +11,7 @@ import sva.dungmas.R
 import sva.dungmas.game.Game
 
 class PreviewRecyclerAdapter(val context: Context, nextLevel: Boolean = true): RecyclerView.Adapter<PreviewViewHolder>(){
-    private val drops = if(nextLevel) Game.getNextLevelDrop(context) else Game.getLevelDrop(context)
+    private val drops = if(nextLevel) Game.getNextLevelDrop() else Game.getLevelDrop()
     private val keyset = drops.keys.toList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PreviewViewHolder {

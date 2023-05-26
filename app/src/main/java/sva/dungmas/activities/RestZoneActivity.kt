@@ -58,11 +58,12 @@ class RestZoneActivity : AppCompatActivity() {
             Codes.BATTLE_LOST.code -> {
                 SimpleDialog("info", "has perdido")
                     .show(supportFragmentManager, "info")
+                Game.saveRanking()
                 finish()
             }
             Codes.BATTLE_WON.code -> {
                 btnRepeatLevel.isEnabled = true
-                val itemsDropped: LinkedHashMap<ItemPart, Int> = Game.getLevelDrop(this)
+                val itemsDropped: LinkedHashMap<ItemPart, Int> = Game.getLevelDrop()
 
                 Game.player.inventory.addItemsDropped(itemsDropped)
 

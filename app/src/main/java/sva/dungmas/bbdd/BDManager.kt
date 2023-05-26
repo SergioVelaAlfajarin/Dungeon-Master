@@ -1,24 +1,28 @@
 package sva.dungmas.bbdd
 
 import android.content.Context
+import sva.dungmas.game.entities.Player
 import sva.dungmas.game.items.Item
 import sva.dungmas.game.items.ItemPart
 import sva.dungmas.game.items.Storable
 import sva.dungmas.recyclers.RankingEntry
 
 class BDManager(context: Context) {
-
     private val helper: BDHelper
     private val itemPart: ArrayList<ItemPart> = arrayListOf()
     private val item: ArrayList<Item> = arrayListOf()
+    private val ranking: ArrayList<RankingEntry> = arrayListOf()
 
     init{
         helper = BDHelper(context)
         fillItemPart()
         fillItem()
+        fillRanking()
     }
 
-
+    private fun fillRanking() {
+        //TODO FILL RANKING
+    }
 
     private fun fillItemPart(){
         val cursor = helper.readableDatabase.rawQuery(
@@ -90,11 +94,20 @@ class BDManager(context: Context) {
     }
 
 
-    fun getRankingPos(context: Context, position: Int): RankingEntry {
+    fun getRankingPos(position: Int): RankingEntry {
         TODO("Not yet implemented")
     }
 
-    fun resetRanking(context: Context) {
+    fun resetRanking() {
+        TODO("Not yet implemented")
+    }
+
+    //PILLARA UN COUNT DE TODAS LAS ENTRADAS + 1
+    //ESA SERA LA ID/POS.
+    //SI ES SUPERIOR A 10, SE COMPRUEBA SI LA PUNTUACION ES SUPERIOR A ALGUNA ENTRADA
+    //SI LO ES, SE SUSTITUYE ESA EN CONTRETO POR LA NUEVA. SI NO, NO SE AÑADE.
+
+    fun saveRank(player: Player, points: Int) {
         TODO("Not yet implemented")
     }
 }

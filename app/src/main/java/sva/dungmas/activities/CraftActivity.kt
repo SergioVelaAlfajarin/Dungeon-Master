@@ -39,7 +39,7 @@ class CraftActivity : AppCompatActivity() {
         btnCraftMax.setOnClickListener(this::btnCraftMaxClick)
     }
 
-    private fun btnCraftMaxClick(view: View) {
+    private fun btnCraftMaxClick(v: View) {
         val item = recyclerAdapter.selectedItem
         val inv = Game.player.inventory
         var counter = 0

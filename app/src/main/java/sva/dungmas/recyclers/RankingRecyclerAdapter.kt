@@ -22,7 +22,7 @@ class RankingRecyclerAdapter(val context: Context): RecyclerView.Adapter<Ranking
 
     override fun onBindViewHolder(holder: RankingViewHolder, position: Int) {
         holder.iLblRankPos.text = (position + 1).toString()
-        val rank: RankingEntry = Game.bdManager.getRankingPos(context, position)
+        val rank: RankingEntry = Game.bdManager.getRankingPos(position)
         holder.iLblRankName.text = rank.name
         holder.iLblRankPts.text = rank.pts.toString()
     }
@@ -35,6 +35,7 @@ class RankingViewHolder(v: View) : RecyclerView.ViewHolder(v){
 }
 
 data class RankingEntry(
+    val pos: Int,
     val name: String,
     val pts: Int
 )
