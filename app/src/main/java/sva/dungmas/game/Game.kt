@@ -26,7 +26,7 @@ object Game {
     }
 
     fun reset() {
-        defaultEnemyStats = Stats(40,2,2)
+        defaultEnemyStats = Stats(20,2,2)
         genEnemies()
         level = 0
         points = 0
@@ -44,8 +44,11 @@ object Game {
 
     private fun increaseDefaultStats(){
         defaultEnemyStats.vit += (level * 1.5).toInt()
+        if(defaultEnemyStats.vit > 999) defaultEnemyStats.vit = 999
         defaultEnemyStats.atk += (level * 1.1).toInt()
+        if(defaultEnemyStats.atk > 99) defaultEnemyStats.atk = 99
         defaultEnemyStats.def += (level * 1.1).toInt()
+        if(defaultEnemyStats.def > 99) defaultEnemyStats.def = 99
     }
 
     private fun genEnemies() {
@@ -59,7 +62,7 @@ object Game {
     fun getLevelDrop(): LinkedHashMap<ItemPart, Int> {
         val items: List<ItemPart> = bdManager.getItemsPart()
         val hashMap: LinkedHashMap<ItemPart, Int> = linkedMapOf()
-        val qntity = min((level.coerceAtLeast(1) * (if(!easyMode) 1.5 else 2.5)).toInt(), 99)
+        val qntity = min((level.coerceAtLeast(1) * (if(!easyMode) 1.6 else 2.4)).toInt(), 99)
         items.forEach{
             hashMap[it] = qntity
         }

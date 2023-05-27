@@ -104,6 +104,7 @@ class CreatePlayerActivity : AppCompatActivity() {
         }
 
         Game.player = Player(name, job)
+        Game.bdManager.savePlayer(Game.player)
 
         Log.d(":::", "btnCreatePlayerClick: " + Game.player.toString())
 

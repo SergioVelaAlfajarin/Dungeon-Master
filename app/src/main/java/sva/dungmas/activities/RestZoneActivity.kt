@@ -67,6 +67,8 @@ class RestZoneActivity : AppCompatActivity() {
 
                 Game.player.inventory.addItemsDropped(itemsDropped)
 
+                Game.bdManager.addItemPartsObtained(Game.player, itemsDropped)
+
                 Snackbar.make(
                     findViewById(R.id.restZoneLayout),
                     R.string.lvlCompletedMsg,

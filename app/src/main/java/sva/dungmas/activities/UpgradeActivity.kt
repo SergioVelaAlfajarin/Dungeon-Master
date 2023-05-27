@@ -37,9 +37,9 @@ class UpgradeActivity : AppCompatActivity() {
 
         lblStatsIncrease = findViewById(R.id.lblStatsIncrease)
         val text =  """
-            +${if(Game.easyMode) 100 else 75}
-            +${if(Game.easyMode) 10 else 7}
-            +${if(Game.easyMode) 10 else 7}
+            +${playerArmor.vitUpgrade}
+            +${playerArmor.atkUpgrade}
+            +${playerArmor.defUpgrade}
         """.trimIndent()
         lblStatsIncrease.text = text
 
@@ -60,6 +60,12 @@ class UpgradeActivity : AppCompatActivity() {
     private fun updateLabel() {
         lblArmorLevel.text = getString(R.string.level, playerArmor.level)
         lblStats.text = playerArmor.toString()
+        val text =  """
+            +${playerArmor.vitUpgrade}
+            +${playerArmor.atkUpgrade}
+            +${playerArmor.defUpgrade}
+        """.trimIndent()
+        lblStatsIncrease.text = text
     }
 
     private fun updateButton() {

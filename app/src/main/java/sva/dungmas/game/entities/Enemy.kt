@@ -7,11 +7,13 @@ class Enemy(
     val name: String,
 ): Entity {
     override var alive = true
+    override var vit = vitMax
 
-    override val vit: Int
+    override val vitMax: Int
         get(){
             return Game.defaultEnemyStats.vit
         }
+
     override val atk: Int
         get(){
             return Game.defaultEnemyStats.vit
@@ -23,6 +25,15 @@ class Enemy(
 
 
     override fun attack(other: Entity) {
-        TODO("Not yet implemented")
+        other.recieveAttack(atk)
+    }
+
+    override fun recieveAttack(atk: Int) {
+        val dmg = atk - (def / 2)
+        vit -= dmg
+        if(vit <= 0){
+            vit = 0
+            alive = false
+        }
     }
 }

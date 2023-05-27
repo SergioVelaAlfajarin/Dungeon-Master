@@ -6,23 +6,37 @@ import sva.dungmas.game.items.Storable
 
 class Armor {
     fun increaseLevel() {
-        stats.vit += if(Game.easyMode){
-            120 - (Game.level * 2).coerceAtMost(30)
-        } else{
-            70 - (Game.level * 2).coerceAtMost(20)
-        }
-        stats.atk += if(Game.easyMode){
-            30 - (Game.level / 2).coerceAtMost(5)
-        } else{
-            20 - (Game.level / 2).coerceAtMost(10)
-        }
-        stats.def += if(Game.easyMode){
-            30 - (Game.level / 2).coerceAtMost(5)
-        } else{
-            20 - (Game.level / 2).coerceAtMost(10)
-        }
+        stats.vit += vitUpgrade
+        stats.atk += atkUpgrade
+        stats.def += defUpgrade
         level++
+        Game.bdManager.updatePlayerStats(Game.player)
     }
+
+    val vitUpgrade: Int
+        get(){
+            return if(Game.easyMode){
+                999.coerceAtMost(120 - (level * 2).coerceAtMost(30))
+            } else{
+                999.coerceAtMost(70 - (level * 2).coerceAtMost(20))
+            }
+        }
+    val atkUpgrade: Int
+        get(){
+            return if(Game.easyMode){
+                99.coerceAtMost(30 - (level / 2).coerceAtMost(5))
+            } else{
+                99.coerceAtMost(20 - (level / 2).coerceAtMost(10))
+            }
+        }
+    val defUpgrade: Int
+        get(){
+            return if(Game.easyMode){
+                99.coerceAtMost(30 - (level / 2).coerceAtMost(5))
+            } else{
+                99.coerceAtMost(20 - (level / 2).coerceAtMost(10))
+            }
+        }
 
     fun canBeUpgraded():Boolean{
         var upgradable = true
@@ -36,7 +50,7 @@ class Armor {
     }
 
     fun getRequirementsForNextLevel(): LinkedHashMap<Storable, Int>{
-        val qnty = (level * (if(Game.easyMode) 1.5 else 2.5)).toInt()
+        val qnty = (level * (if(Game.easyMode) 1.1 else 2.0)).toInt()
         return linkedMapOf(
             Game.bdManager.getCraftableItems(1) to qnty,
             Game.bdManager.getCraftableItems(2) to qnty,

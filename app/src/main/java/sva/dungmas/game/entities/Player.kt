@@ -9,12 +9,13 @@ class Player(
     val inventory = Inventory()
     val armor = Armor() //estas estadisticas seran las que iran cambiando. las default no
     override var alive = true
+    override var vit = vitMax
 
     override fun toString(): String {
-        return "Vit: $vit\nAtk: $atk\nDef: $def"
+        return "Vit: $vit/$vitMax\nAtk: $atk\nDef: $def"
     }
 
-    override val vit: Int
+    override val vitMax: Int
         get(){
             return job.stats.vit + armor.vit
         }
@@ -28,6 +29,15 @@ class Player(
         }
 
     override fun attack(other: Entity) {
-        TODO("Not yet implemented")
+        other.recieveAttack(this.atk)
+    }
+
+    override fun recieveAttack(atk: Int) {
+        val dmg = atk - (def / 2)
+        vit -= dmg
+        if(vit <= 0){
+            vit = 0
+            alive = false
+        }
     }
 }

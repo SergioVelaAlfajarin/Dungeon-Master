@@ -6,6 +6,7 @@ import sva.dungmas.game.items.Item
 import sva.dungmas.game.items.ItemPart
 import sva.dungmas.game.items.Storable
 import sva.dungmas.recyclers.RankingEntry
+import java.util.LinkedHashMap
 
 class BDManager(context: Context) {
     private val helper: BDHelper
@@ -108,6 +109,18 @@ class BDManager(context: Context) {
     //SI LO ES, SE SUSTITUYE ESA EN CONTRETO POR LA NUEVA. SI NO, NO SE AÑADE.
 
     fun saveRank(player: Player, points: Int) {
+        TODO("Not yet implemented")
+    }
+
+    fun updatePlayerStats(player: Player) {
+        TODO("Not yet implemented")
+    }
+
+    fun savePlayer(player: Player) {
+        TODO("Not yet implemented")
+    }
+
+    fun addItemPartsObtained(player: Player, itemsDropped: LinkedHashMap<ItemPart, Int>) {
         TODO("Not yet implemented")
     }
 }
