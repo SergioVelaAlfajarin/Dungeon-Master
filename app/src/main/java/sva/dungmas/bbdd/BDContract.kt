@@ -108,7 +108,7 @@ object BDContract {
     }
 
     object Ranking: BaseColumns{
-        const val tableName = "itemparts_obtenidos"
+        const val tableName = "ranking"
         const val player_id = "player_id"
         const val pts = "pts"
 
@@ -124,7 +124,7 @@ object BDContract {
     }
 
     object ItempartsObtenidos: BaseColumns{
-        const val tableName = "ranking"
+        const val tableName = "itemparts_obtenidos"
         const val itemPart_id = "itemPart_id"
         const val player_id = "player_id"
         const val quantity = "quantity"

@@ -103,7 +103,8 @@ class CreatePlayerActivity : AppCompatActivity() {
             return
         }
 
-        Game.player = Player(name, job)
+        val id = Game.bdManager.getNextPlayerId()
+        Game.player = Player(id, name, job)
         Game.bdManager.savePlayer(Game.player)
 
         Log.d(":::", "btnCreatePlayerClick: " + Game.player.toString())

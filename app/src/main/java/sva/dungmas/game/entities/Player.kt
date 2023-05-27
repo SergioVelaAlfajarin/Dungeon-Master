@@ -3,11 +3,12 @@ package sva.dungmas.game.entities
 import sva.dungmas.enums.DefaultJobs
 
 class Player(
+    val id: Int,
     val name: String,
-    val job: DefaultJobs
+    private val job: DefaultJobs
 ): Entity {
     val inventory = Inventory()
-    val armor = Armor() //estas estadisticas seran las que iran cambiando. las default no
+    val armor = Armor()
     override var alive = true
     override var vit = vitMax
 

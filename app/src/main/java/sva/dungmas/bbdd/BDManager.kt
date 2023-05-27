@@ -1,12 +1,12 @@
 package sva.dungmas.bbdd
 
 import android.content.Context
+import android.provider.BaseColumns
 import sva.dungmas.game.entities.Player
 import sva.dungmas.game.items.Item
 import sva.dungmas.game.items.ItemPart
 import sva.dungmas.game.items.Storable
 import sva.dungmas.recyclers.RankingEntry
-import java.util.LinkedHashMap
 
 class BDManager(context: Context) {
     private val helper: BDHelper
@@ -95,32 +95,65 @@ class BDManager(context: Context) {
     }
 
 
-    fun getRankingPos(position: Int): RankingEntry {
-        TODO("Not yet implemented")
+    fun getRankings(): ArrayList<RankingEntry> {
+        val rankings  = arrayListOf<RankingEntry>()
+        val query = """
+            SELECT ${BDContract.Player.tableName}.${BDContract.Player.player_name}, 
+                   ${BDContract.Ranking.tableName}.${BDContract.Ranking.pts} 
+            FROM ${BDContract.Ranking.tableName} 
+            INNER JOIN  ${BDContract.Player.tableName} 
+            ON ${BDContract.Player.tableName}.${BaseColumns._ID} =  ${BDContract.Ranking.tableName}.${BDContract.Ranking.player_id}
+            ORDER BY ${BDContract.Ranking.tableName}.${BDContract.Ranking.pts} DESC, ${BDContract.Player.tableName}.${BDContract.Player.player_name}
+            LIMIT 10
+            """
+        val cursor = helper.readableDatabase.rawQuery(query, null)
+        if (cursor.moveToFirst()) {
+            do {
+                val name = cursor.getString(0)
+                val pts = cursor.getInt(1)
+                rankings.add(RankingEntry(name, pts))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        val addRanks = 10 - rankings.size
+        if(addRanks != 0){
+            repeat(addRanks){
+                rankings.add(RankingEntry("-", 0))
+            }
+        }
+        return rankings
     }
 
     fun resetRanking() {
-        TODO("Not yet implemented")
+        val query = "DELETE FROM ${BDContract.Ranking.tableName};"
+        helper.writableDatabase.execSQL(query)
     }
-
-    //PILLARA UN COUNT DE TODAS LAS ENTRADAS + 1
-    //ESA SERA LA ID/POS.
-    //SI ES SUPERIOR A 10, SE COMPRUEBA SI LA PUNTUACION ES SUPERIOR A ALGUNA ENTRADA
-    //SI LO ES, SE SUSTITUYE ESA EN CONTRETO POR LA NUEVA. SI NO, NO SE AÑADE.
 
     fun saveRank(player: Player, points: Int) {
-        TODO("Not yet implemented")
+        val query = "INSERT INTO ${BDContract.Ranking.tableName}(${BaseColumns._ID},${BDContract.Ranking.player_id},${BDContract.Ranking.pts}) " +
+                "VALUES ((SELECT COUNT(*) FROM ${BDContract.Ranking.tableName}),${player.id},$points)"
+        helper.writableDatabase.execSQL(query)
     }
-
     fun updatePlayerStats(player: Player) {
         TODO("Not yet implemented")
     }
 
     fun savePlayer(player: Player) {
-        TODO("Not yet implemented")
+        val query = "INSERT INTO ${BDContract.Player.tableName}(${BaseColumns._ID},${BDContract.Player.player_name},${BDContract.Player.vit},${BDContract.Player.def},${BDContract.Player.atk}) " +
+                "VALUES (${player.id},'${player.name}',${player.vit},${player.def},${player.atk})"
+        helper.writableDatabase.execSQL(query)
     }
 
-    fun addItemPartsObtained(player: Player, itemsDropped: LinkedHashMap<ItemPart, Int>) {
-        TODO("Not yet implemented")
+    fun addItemPartsObtained(player: Player, itemDropped: ItemPart) {
+        //añadira items a la tabla ItemsPart Obtenidos.
+    }
+
+    fun getNextPlayerId(): Int {
+        val query = "SELECT COUNT(*) FROM ${BDContract.Player.tableName};"
+        val cursor = helper.readableDatabase.rawQuery(query, null)
+        cursor.moveToFirst()
+        val id = cursor.getInt(0) + 1
+        cursor.close()
+        return id
     }
 }
