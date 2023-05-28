@@ -18,7 +18,7 @@ class BattleActivity : AppCompatActivity() {
         isRepeating = intent.getBooleanExtra("repeat", false)
 
         battleWon = true
-
+        //https://developer.android.com/kotlin/coroutines#groovy
         onBattleEnd()
     }
 
