@@ -33,8 +33,6 @@ class CreatePlayerActivity : AppCompatActivity() {
 
         fillSpinner()
         setButtonsEvents()
-
-        etName.setText("placeholder")
     }
 
     private fun fillSpinner() {
@@ -98,7 +96,7 @@ class CreatePlayerActivity : AppCompatActivity() {
         val name = etName.text.toString()
 
         if (name.isEmpty()) {
-            SimpleDialog("info", "et vacio")
+            SimpleDialog(getString(R.string.simpleDialogTitle), getString(R.string.nameEmptyMsg))
                 .show(supportFragmentManager, "info")
             return
         }

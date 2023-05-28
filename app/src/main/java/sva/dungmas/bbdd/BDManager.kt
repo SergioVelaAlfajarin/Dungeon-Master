@@ -12,17 +12,11 @@ class BDManager(context: Context) {
     private val helper: BDHelper
     private val itemPart: ArrayList<ItemPart> = arrayListOf()
     private val item: ArrayList<Item> = arrayListOf()
-    private val ranking: ArrayList<RankingEntry> = arrayListOf()
 
     init{
         helper = BDHelper(context)
         fillItemPart()
         fillItem()
-        fillRanking()
-    }
-
-    private fun fillRanking() {
-        //TODO FILL RANKING
     }
 
     private fun fillItemPart(){
@@ -134,8 +128,11 @@ class BDManager(context: Context) {
                 "VALUES ((SELECT COUNT(*) FROM ${BDContract.Ranking.tableName}),${player.id},$points)"
         helper.writableDatabase.execSQL(query)
     }
+
     fun updatePlayerStats(player: Player) {
-        TODO("Not yet implemented")
+        val query = "UPDATE ${BDContract.Player.tableName} SET ${BDContract.Player.vit} = ${player.vit},${BDContract.Player.def} = ${player.def}, ${BDContract.Player.atk} = ${player.atk} " +
+                "WHERE ${BaseColumns._ID} = ${player.id}"
+        helper.writableDatabase.execSQL(query)
     }
 
     fun savePlayer(player: Player) {

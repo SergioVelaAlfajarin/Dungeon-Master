@@ -70,4 +70,6 @@
     <string name="player">Jugador</string>
     <string name="enemy">Enemigo</string>
     <string name="statsInfo2">Estadisticas Armadura</string>
+    <string name="simpleDialogTitle">Mensaje</string>
+    <string name="nameEmptyMsg">Introduce el nombre del personaje</string>
 </resources>

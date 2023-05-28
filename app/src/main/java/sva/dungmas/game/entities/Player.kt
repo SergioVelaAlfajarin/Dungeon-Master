@@ -33,6 +33,10 @@ class Player(
         other.recieveAttack(this.atk)
     }
 
+    fun updateCurrentVit(){
+        vit = vitMax
+    }
+
     override fun recieveAttack(atk: Int) {
         val dmg = atk - (def / 2)
         vit -= dmg

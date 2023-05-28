@@ -36,4 +36,8 @@ class Enemy(
             alive = false
         }
     }
+    override fun toString(): String {
+        return "VitMax: $vitMax\nAtk: $atk\nDef: $def"
+    }
+
 }

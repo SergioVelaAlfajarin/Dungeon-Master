@@ -10,7 +10,8 @@ class Armor {
         stats.atk += atkUpgrade
         stats.def += defUpgrade
         level++
-        //Game.bdManager.updatePlayerStats(Game.player)
+        Game.bdManager.updatePlayerStats(Game.player)
+        Game.player.updateCurrentVit()
     }
 
     val vitUpgrade: Int
