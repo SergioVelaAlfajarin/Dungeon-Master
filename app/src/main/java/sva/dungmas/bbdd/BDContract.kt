@@ -30,13 +30,13 @@ object BDContract {
         "INSERT INTO ${Item.tableName}(${BaseColumns._ID}, ${Item.item_nameRes}, ${Item.item_iconRes}) VALUES (3,${ R.string.itemName_rock2},${ R.drawable.rock2});",
         "INSERT INTO ${Item.tableName}(${BaseColumns._ID}, ${Item.item_nameRes}, ${Item.item_iconRes}) VALUES (4,${ R.string.itemName_wood2},${ R.drawable.wood2});",
         "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (1, 1,1,3);",
-        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (1, 4,1,1);",
-        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (1, 2,2,3);",
-        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (1, 3,2,1);",
-        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (1, 3,3,3);",
-        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (1, 2,3,1);",
-        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (1, 4,4,3);",
-        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (1, 1,4,3);"
+        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (2, 4,1,1);",
+        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (3, 2,2,3);",
+        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (4, 3,2,1);",
+        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (5, 3,3,3);",
+        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (6, 2,3,1);",
+        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (7, 4,4,3);",
+        "INSERT INTO ${Recipes.tableName} (${BaseColumns._ID}, ${Recipes.itempart_id},${Recipes.item_id},${Recipes.quantity}) VALUES (8, 1,4,3);"
     )
     object Item: BaseColumns{
         const val tableName = "item"

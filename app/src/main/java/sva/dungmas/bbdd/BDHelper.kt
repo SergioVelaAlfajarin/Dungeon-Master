@@ -10,7 +10,7 @@ class BDHelper(
 ): SQLiteOpenHelper(context, name, null, version) {
     companion object{
         const val name = "DungMas.db"
-        const val version = 1
+        const val version = 4
     }
 
     override fun onCreate(db: SQLiteDatabase) {

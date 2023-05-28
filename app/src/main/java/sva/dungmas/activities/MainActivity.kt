@@ -12,27 +12,44 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
 import sva.dungmas.R
+import sva.dungmas.bbdd.BDContract
 import sva.dungmas.bbdd.BDHelper
 import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
+import java.lang.StringBuilder
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private lateinit var launcher: ActivityResultLauncher<Intent>
- private lateinit var test: BDHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         Game.init(applicationContext)
-        setButtonsEvents()
         updateSettings()
+        setButtonsEvents()
 
         launcher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),
             this::onActivityResult
         )
+
+/*
+        val sb = StringBuilder()
+        BDContract.drops.forEach {
+            sb.append(it)
+        }
+        BDContract.creates.forEach {
+            sb.append(it)
+        }
+        BDContract.inserts.forEach {
+            sb.append(it)
+        }
+        val string = sb.toString()
+        val new = string.trimIndent().trimIndent().replace("\n", "").replace("\t","")
+*/
     }
 
     private fun onActivityResult(result: ActivityResult) {
