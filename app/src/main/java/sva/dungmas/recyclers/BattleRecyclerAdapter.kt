@@ -10,7 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import sva.dungmas.R
 
-class BattleRecyclerAdapter(private val logs: ArrayList<String>): RecyclerView.Adapter<BattleViewHolder>(){
+class BattleRecyclerAdapter(): RecyclerView.Adapter<BattleViewHolder>(){
+    private val logs: ArrayList<String> = arrayListOf()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BattleViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.battle_list_item, parent, false)
@@ -30,6 +32,10 @@ class BattleRecyclerAdapter(private val logs: ArrayList<String>): RecyclerView.A
             holder.lbl.setTextColor(Color.RED)
             holder.lbl.setTypeface(null, Typeface.BOLD)
         }
+    }
+
+    fun add(item: String) {
+        logs.add(item)
     }
 }
 

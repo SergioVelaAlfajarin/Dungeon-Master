@@ -155,7 +155,7 @@ class RestZoneActivity : AppCompatActivity() {
                 val lbl2 = view.findViewById<TextView>(R.id.lblStatsEnemy)
 
                 lbl1.text = Game.player.toString()
-                lbl2.text = Game.enemies[0].toString()
+                lbl2.text = Game.enemy.toString()
 
                 CustomDialog(getString(R.string.statsInfo) + " " + getString(R.string.level, Game.level), view)
                     .show(supportFragmentManager, ":::")

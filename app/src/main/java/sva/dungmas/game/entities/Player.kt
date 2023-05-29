@@ -29,20 +29,21 @@ class Player(
             return job.stats.def + armor.def
         }
 
-    override fun attack(other: Entity) {
-        other.recieveAttack(this.atk)
+    override fun attack(other: Entity): Int {
+        return other.recieveAttack(this.atk)
     }
 
     fun updateCurrentVit(){
         vit = vitMax
     }
 
-    override fun recieveAttack(atk: Int) {
+    override fun recieveAttack(atk: Int): Int {
         val dmg = atk - (def / 2)
         vit -= dmg
         if(vit <= 0){
             vit = 0
             alive = false
         }
+        return dmg
     }
 }

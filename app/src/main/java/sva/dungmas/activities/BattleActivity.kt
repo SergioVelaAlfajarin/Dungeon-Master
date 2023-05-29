@@ -1,6 +1,8 @@
 package sva.dungmas.activities
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -11,11 +13,14 @@ import sva.dungmas.R
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
 import sva.dungmas.recyclers.BattleRecyclerAdapter
+import java.util.concurrent.Executors
 
 class BattleActivity : AppCompatActivity() {
     private var isRepeating = false
     private var battleWon = false
-
+    private lateinit var recycler: RecyclerView
+    private lateinit var recyclerAdapter: BattleRecyclerAdapter
+    private lateinit var btnContinue: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,27 +28,52 @@ class BattleActivity : AppCompatActivity() {
 
         isRepeating = intent.getBooleanExtra("repeat", false)
 
-        val logs  = runBattle()
-        val recycler = findViewById<RecyclerView>(R.id.recyclerBattle)
-        recycler.adapter = BattleRecyclerAdapter(logs)
+        recycler = findViewById(R.id.recyclerBattle)
         recycler.layoutManager = LinearLayoutManager(this)
+        recyclerAdapter = BattleRecyclerAdapter()
+        recycler.adapter = recyclerAdapter
 
-        val btn = findViewById<Button>(R.id.btnBattleContinue)
-        btn.setOnClickListener(this::onBattleEnd)
-        btn.isEnabled = true
+        btnContinue = findViewById<Button>(R.id.btnBattleContinue)
+        btnContinue.setOnClickListener(this::onBattleEnd)
+
+        runBattle()
+    }
+
+    private fun addItem(item: String) {
+        recyclerAdapter.add(item)
+        recyclerAdapter.notifyDataSetChanged()
+    }
+
+    /**
+     * returns true if player and enemies are still alive.
+     * false otherwise.
+     */
+    private fun repeatBattle(): Boolean {
+        return Game.player.alive && Game.enemy.alive
     }
 
     /**
      * Runs battle, fills logs and updates the battleWon variable
      */
-    private fun runBattle(): ArrayList<String> {
-        battleWon = false
-        return arrayListOf(
-            "teeesting",
-            "teeesting",
-            "teeesting",
-            "teeesting"
-        )
+    private fun runBattle() {
+        val executor = Executors.newSingleThreadExecutor()
+        val handler = Handler(Looper.getMainLooper())
+
+        executor.execute{
+            while(repeatBattle()){
+                Thread.sleep(1000)
+                var dmgDone = Game.player.attack(Game.enemy)
+                addItem("player did $dmgDone")
+
+                Thread.sleep(1000)
+                dmgDone = Game.enemy.attack(Game.player)
+                addItem("enemy did $dmgDone")
+            }
+
+            handler.post{
+               // btnContinue.isEnabled = true
+            }
+        }
     }
 
     private fun onBattleEnd(v: View) {

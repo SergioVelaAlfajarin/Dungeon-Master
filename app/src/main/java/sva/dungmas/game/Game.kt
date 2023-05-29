@@ -15,7 +15,7 @@ object Game {
     private var points = 0
     lateinit var player: Player
     lateinit var bdManager: BDManager
-    lateinit var enemies: ArrayList<Enemy>
+    lateinit var enemy: Enemy
     lateinit var defaultEnemyStats: Stats
     private lateinit var preferences: SharedPreferences
 
@@ -27,15 +27,15 @@ object Game {
 
     fun reset() {
         defaultEnemyStats = Stats(20,2,2)
-        genEnemies()
+        enemy = Enemy()
         level = 0
-        points = 10000
+        points = 0
     }
 
     fun increaseLevel(){
         level++
         increaseDefaultStats()
-        genEnemies()
+        enemy = Enemy()
     }
 
     fun addPoints(pts: Int){
@@ -49,14 +49,6 @@ object Game {
         if(defaultEnemyStats.atk > 99) defaultEnemyStats.atk = 99
         defaultEnemyStats.def += (level * 1.1).toInt()
         if(defaultEnemyStats.def > 99) defaultEnemyStats.def = 99
-    }
-
-    private fun genEnemies() {
-        Log.d(":::", "genEnemies: Generating lvl $level enemies.")
-        enemies = arrayListOf()
-        for (i in 1..3){
-            enemies.add(Enemy(i, "Enemy"))
-        }
     }
 
     fun getLevelDrop(): LinkedHashMap<ItemPart, Int> {
