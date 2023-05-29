@@ -12,12 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
 import sva.dungmas.R
-import sva.dungmas.bbdd.BDContract
-import sva.dungmas.bbdd.BDHelper
 import sva.dungmas.dialogs.SimpleDialog
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
-import java.lang.StringBuilder
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {

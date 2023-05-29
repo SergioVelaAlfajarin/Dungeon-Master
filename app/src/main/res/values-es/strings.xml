@@ -72,4 +72,6 @@
     <string name="statsInfo2">Estadisticas Armadura</string>
     <string name="simpleDialogTitle">Mensaje</string>
     <string name="nameEmptyMsg">Introduce el nombre del personaje</string>
+    <string name="gameOverTitle">Has Perdido</string>
+    <string name="gameOverMessage">Tu personaje ha muerto y has perdido la partida.</string>
 </resources>

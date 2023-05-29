@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import sva.dungmas.R
+import sva.dungmas.dialogs.BattleLostDialog
 import sva.dungmas.dialogs.ConfirmCallback
 import sva.dungmas.dialogs.ConfirmDialog
 import sva.dungmas.dialogs.CustomDialog
@@ -56,10 +57,17 @@ class RestZoneActivity : AppCompatActivity() {
     private fun onActivityResult(result: ActivityResult) {
         when (result.resultCode) {
             Codes.BATTLE_LOST.code -> {
-                SimpleDialog("info", "has perdido")
-                    .show(supportFragmentManager, "info")
-                Game.saveRanking()
-                finish()
+                BattleLostDialog(
+                    getString(R.string.gameOverTitle),
+                    getString(R.string.gameOverMessage),
+                    getString(R.string.exitOp),
+                    object : ConfirmCallback {
+                        override fun dialogOk() {
+                            Game.saveRanking()
+                            finish()
+                        }
+                    }
+                ).show(supportFragmentManager, "btlost")
             }
             Codes.BATTLE_WON.code -> {
                 btnRepeatLevel.isEnabled = true
@@ -67,8 +75,8 @@ class RestZoneActivity : AppCompatActivity() {
 
                 Game.player.inventory.addItemsDropped(itemsDropped)
 
-                for((key, value) in itemsDropped){
-                    Game.bdManager.addItemPartsObtained(Game.player, key)
+                for(i in itemsDropped.keys){
+                    Game.bdManager.addItemPartsObtained(Game.player, i)
                 }
 
                 Snackbar.make(

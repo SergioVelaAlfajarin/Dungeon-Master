@@ -124,6 +124,8 @@ class BDManager(context: Context) {
     }
 
     fun saveRank(player: Player, points: Int) {
+        if(points <= 0) return
+
         val query = "INSERT INTO ${BDContract.Ranking.tableName}(${BaseColumns._ID},${BDContract.Ranking.player_id},${BDContract.Ranking.pts}) " +
                 "VALUES ((SELECT COUNT(*) FROM ${BDContract.Ranking.tableName}),${player.id},$points)"
         helper.writableDatabase.execSQL(query)

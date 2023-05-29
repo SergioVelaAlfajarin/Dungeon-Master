@@ -29,7 +29,7 @@ object Game {
         defaultEnemyStats = Stats(20,2,2)
         genEnemies()
         level = 0
-        points = 0
+        points = 10000
     }
 
     fun increaseLevel(){

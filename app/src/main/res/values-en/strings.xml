@@ -72,4 +72,6 @@
     <string name="statsInfo2">Armor Stats</string>
     <string name="simpleDialogTitle">Message</string>
     <string name="nameEmptyMsg">Introduce a player name</string>
+    <string name="gameOverTitle">Game Over</string>
+    <string name="gameOverMessage">Your character has died and you lost the game.</string>
 </resources>

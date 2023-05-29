@@ -26,7 +26,7 @@ class RankingRecyclerAdapter(val context: Context): RecyclerView.Adapter<Ranking
         holder.iLblRankPos.text = (position + 1).toString()
         val rank: RankingEntry = ranks[position]
         holder.iLblRankName.text = rank.name
-        holder.iLblRankPts.text = rank.pts.toString()
+        holder.iLblRankPts.text = "${rank.pts} pts"
     }
 }
 
