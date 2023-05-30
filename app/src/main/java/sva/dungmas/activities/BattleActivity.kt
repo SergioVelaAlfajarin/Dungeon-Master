@@ -1,11 +1,10 @@
 package sva.dungmas.activities
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,14 +12,11 @@ import sva.dungmas.R
 import sva.dungmas.enums.Codes
 import sva.dungmas.game.Game
 import sva.dungmas.recyclers.BattleRecyclerAdapter
-import java.util.concurrent.Executors
 
 class BattleActivity : AppCompatActivity() {
     private var isRepeating = false
-    private var battleWon = false
-    private lateinit var recycler: RecyclerView
-    private lateinit var recyclerAdapter: BattleRecyclerAdapter
-    private lateinit var btnContinue: Button
+    private var battleWon = true
+    private lateinit var logs: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,20 +24,22 @@ class BattleActivity : AppCompatActivity() {
 
         isRepeating = intent.getBooleanExtra("repeat", false)
 
-        recycler = findViewById(R.id.recyclerBattle)
+        logs = runBattle()
+
+        val recycler = findViewById<RecyclerView>(R.id.recyclerBattle)
         recycler.layoutManager = LinearLayoutManager(this)
-        recyclerAdapter = BattleRecyclerAdapter()
-        recycler.adapter = recyclerAdapter
+        recycler.adapter = BattleRecyclerAdapter(logs)
 
-        btnContinue = findViewById<Button>(R.id.btnBattleContinue)
+        val btnContinue = findViewById<Button>(R.id.btnBattleContinue)
         btnContinue.setOnClickListener(this::onBattleEnd)
+        btnContinue.isEnabled = true
 
-        runBattle()
-    }
 
-    private fun addItem(item: String) {
-        recyclerAdapter.add(item)
-        recyclerAdapter.notifyDataSetChanged()
+        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                onBattleEnd(null)
+            }
+        })
     }
 
     /**
@@ -55,7 +53,8 @@ class BattleActivity : AppCompatActivity() {
     /**
      * Runs battle, fills logs and updates the battleWon variable
      */
-    private fun runBattle() {
+    private fun runBattle(): ArrayList<String> {
+        /*
         val executor = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
 
@@ -74,9 +73,17 @@ class BattleActivity : AppCompatActivity() {
                // btnContinue.isEnabled = true
             }
         }
+        */
+
+        return arrayListOf(
+            "teeesting",
+            "teeesting",
+            "teeesting",
+            "teeesting"
+        )
     }
 
-    private fun onBattleEnd(v: View) {
+    private fun onBattleEnd(v: View?) {
         if (battleWon && isRepeating) {
             Log.d(":::", "onBattleEnd: battle won and is repeating")
             setResult(Codes.BATTLE_WON.code)

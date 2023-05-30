@@ -50,7 +50,7 @@
     <string name="itemName_rock">Stone</string>
     <string name="clearRankingTitle">Clear Ranking</string>
     <string name="clearRankingMsg">Do you want to delete all entries?</string>
-    <string name="acceptOp">Accept</string>
+    <string name="acceptOp">OK</string>
     <string name="itemPreviewDialogTitle">Level %1$d drops</string>
     <string name="lvlCompletedMsg">Level Completed. Obtained items.</string>
     <string name="entriesDeleted">The entries have been deleted.</string>
@@ -74,4 +74,6 @@
     <string name="nameEmptyMsg">Introduce a player name</string>
     <string name="gameOverTitle">Game Over</string>
     <string name="gameOverMessage">Your character has died and you lost the game.</string>
+    <string name="lblBattleTitle">Battle Log</string>
+    <string name="backOp">Back</string>
 </resources>
