@@ -20,7 +20,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerBattle"
-        android:layout_width="322dp"
+        android:layout_width="match_parent"
         android:layout_height="466dp"
         android:layout_marginTop="36dp"
         android:textAlignment="center"

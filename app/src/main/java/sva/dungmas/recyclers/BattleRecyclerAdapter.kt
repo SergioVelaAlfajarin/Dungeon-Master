@@ -22,11 +22,14 @@ class BattleRecyclerAdapter(private val logs: ArrayList<String>): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: BattleViewHolder, position: Int) {
+        //TODO MEJORAR LOS MENSAJES DE LOG
         val next = position + 1
-        holder.lbl.text = "${next}.- ${logs[position]}"
         if(next == itemCount){
             holder.lbl.setTextColor(Color.RED)
             holder.lbl.setTypeface(null, Typeface.BOLD)
+            holder.lbl.text = logs[position]
+        }else{
+            holder.lbl.text = "${next}.- ${logs[position]}"
         }
     }
 }

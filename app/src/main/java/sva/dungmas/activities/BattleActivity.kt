@@ -16,16 +16,13 @@ import sva.dungmas.recyclers.BattleRecyclerAdapter
 class BattleActivity : AppCompatActivity() {
     private var isRepeating = false
     private var battleWon = true
-    private lateinit var logs: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_battle)
-
         isRepeating = intent.getBooleanExtra("repeat", false)
 
-        logs = runBattle()
-
+        val logs = runBattle()
         val recycler = findViewById<RecyclerView>(R.id.recyclerBattle)
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = BattleRecyclerAdapter(logs)
@@ -33,7 +30,6 @@ class BattleActivity : AppCompatActivity() {
         val btnContinue = findViewById<Button>(R.id.btnBattleContinue)
         btnContinue.setOnClickListener(this::onBattleEnd)
         btnContinue.isEnabled = true
-
 
         onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -54,33 +50,22 @@ class BattleActivity : AppCompatActivity() {
      * Runs battle, fills logs and updates the battleWon variable
      */
     private fun runBattle(): ArrayList<String> {
-        /*
-        val executor = Executors.newSingleThreadExecutor()
-        val handler = Handler(Looper.getMainLooper())
+        val logs = arrayListOf<String>()
+        while(repeatBattle()){
+            var dmgDone = Game.player.attack(Game.enemy)
+            logs.add("Ataque del jugador. Daño realizado: $dmgDone")
 
-        executor.execute{
-            while(repeatBattle()){
-                Thread.sleep(1000)
-                var dmgDone = Game.player.attack(Game.enemy)
-                addItem("player did $dmgDone")
-
-                Thread.sleep(1000)
-                dmgDone = Game.enemy.attack(Game.player)
-                addItem("enemy did $dmgDone")
-            }
-
-            handler.post{
-               // btnContinue.isEnabled = true
-            }
+            dmgDone = Game.enemy.attack(Game.player)
+            logs.add("Ataque del enemigo. Daño realizado: $dmgDone")
         }
-        */
-
-        return arrayListOf(
-            "teeesting",
-            "teeesting",
-            "teeesting",
-            "teeesting"
-        )
+        battleWon = if(Game.player.alive){
+            logs.add("Has derrotado al enemigo de este nivel")
+            true
+        } else{
+            logs.add("Has muerto")
+            false
+        }
+        return logs
     }
 
     private fun onBattleEnd(v: View?) {
