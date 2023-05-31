@@ -205,6 +205,8 @@ class RestZoneActivity : AppCompatActivity() {
     }
 
     private fun btnNextLevelClick(v: View) {
+        Game.player.heal()
+
         val it = Intent(this, BattleActivity::class.java)
         val bd = Bundle()
         bd.putBoolean("repeat", false)

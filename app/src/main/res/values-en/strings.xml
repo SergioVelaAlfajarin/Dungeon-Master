@@ -76,4 +76,10 @@
     <string name="gameOverMessage">Your character has died and you lost the game.</string>
     <string name="lblBattleTitle">Battle Log</string>
     <string name="backOp">Back</string>
+    <string name="attackmsgPlayer">Player attack. Damage done: %1$d
+    Enemy health: %2$d/%3$d</string>
+    <string name="attackmsgEnemy">Enemy attack. Damage done: %1$d
+    Player health: %2$d/%3$d</string>
+    <string name="msgLevelWon">You defeated this level enemy</string>
+    <string name="msgLevelLost">You died</string>
 </resources>

@@ -22,4 +22,13 @@ interface Entity {
         }
         return reduction
     }
+
+    fun heal(){
+        val heal = (vit * 20) / 100
+        vit += heal
+        if(vit > vitMax){
+            vit = vitMax
+        }
+        Log.d(":::", "heal: player healed $heal points. Current life: $vit/$vitMax")
+    }
 }

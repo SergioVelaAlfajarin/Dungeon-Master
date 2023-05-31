@@ -53,16 +53,22 @@ class BattleActivity : AppCompatActivity() {
         val logs = arrayListOf<String>()
         while(repeatBattle()){
             var dmgDone = Game.player.attack(Game.enemy)
-            logs.add("Ataque del jugador. Daño realizado: $dmgDone")
+            var msg = getString(R.string.attackmsgPlayer, dmgDone, Game.enemy.vit, Game.enemy.vitMax)
+            logs.add(msg)
+
+            if(!Game.enemy.alive){
+                break
+            }
 
             dmgDone = Game.enemy.attack(Game.player)
-            logs.add("Ataque del enemigo. Daño realizado: $dmgDone")
+            msg = getString(R.string.attackmsgEnemy, dmgDone, Game.player.vit, Game.player.vitMax)
+            logs.add(msg)
         }
         battleWon = if(Game.player.alive){
-            logs.add("Has derrotado al enemigo de este nivel")
+            logs.add(getString(R.string.msgLevelWon))
             true
         } else{
-            logs.add("Has muerto")
+            logs.add(getString(R.string.msgLevelLost))
             false
         }
         return logs
